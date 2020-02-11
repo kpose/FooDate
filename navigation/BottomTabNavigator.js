@@ -11,6 +11,10 @@ const BottomTabNavigator = createBottomTabNavigator({
     People: PeopleScreen,
     Decision: DecisionScreen,
     Restaurant: RestaurantsScreen
+}, {
+    tabBarOptions: {
+        showLabel: false
+    }
 });
 
 export default BottomTabNavigator;
