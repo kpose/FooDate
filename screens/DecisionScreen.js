@@ -2,6 +2,8 @@ import React from 'react'
 import { Text, View, StyleSheet } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
 
+import CustomTextInput from '../components/CustomTextInput';
+
 const TabIcon = (props) => (
     <Ionicons
       name={'ios-hourglass'}
@@ -21,7 +23,7 @@ export default class DecisionScreen extends React.Component {
     render() {
         return (
             <View style = {styles.container}>
-                <Text> Hello Decision</Text>
+                <CustomTextInput />
             </View>
         );
     }
