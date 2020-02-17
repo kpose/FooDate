@@ -1,11 +1,12 @@
 import React from "react";
 import CustomTextInput from "../components/CustomTextInput";
-import { Alert, AsyncStorage, BackHandler, FlatList, Picker, Platform, ScrollView, StyleSheet, Text, View } from "react-native";
-import { Constants } from "expo";
+import { Alert, AsyncStorage, SafeAreaView, BackHandler, FlatList, Picker, Platform, ScrollView, StyleSheet, Text, View } from "react-native";
+import Constants from 'expo-constants';
 import CustomButton from "../components/CustomButton";
 
 
 export default class AddScreen extends React.Component {
+
     constructor(inProps) {
         super(inProps);
         this.state= {name: "", cuisine: "", price: "", rating: "", phone: "", address: "", website: "", delivery: "", key: `r_${new Date().getTime()}`
@@ -15,10 +16,11 @@ export default class AddScreen extends React.Component {
   render() {
       return(
           <ScrollView style={styles.addScreenContainer}>
-            <View style={styles.addScreenInnerContainer}>
+            <SafeAreaView style={styles.addScreenInnerContainer}>
                 <View style = {styles.addScreenFormContainer}>
                     <CustomTextInput label = "Name" maxLength={20}
-                                     stateHolder={this} stateFieldName="name" />
+                                     stateHolder={this} stateFieldName="name"
+                                      />
                     
                     <Text style = {styles.fieldLabel}>Cuisine</Text>
                     <View style = {styles.pickerContainer}>
@@ -153,7 +155,7 @@ export default class AddScreen extends React.Component {
                     } }
                     />
                 </View>
-            </View>
+            </SafeAreaView>
           </ScrollView>
       );
   }
@@ -166,7 +168,7 @@ const styles = StyleSheet.create({
 
     addScreenContainer : {
         flex: 1,
-        alignItems: "center",
+        
         paddingTop: 20,
         width: "100%"
     },
@@ -181,7 +183,7 @@ const styles = StyleSheet.create({
     pickerContainer : {
         ...Platform.select({
         ios : { },
-        android : { width : "96%", borderRadius : 8, borderColor : "#c0c0c0",
+        android : { width : "96%", borderRadius : 8, borderColor : "#7157c4",
        borderWidth : 2,
         marginLeft : 10, marginBottom : 20, marginTop : 4
         } 
@@ -190,7 +192,7 @@ const styles = StyleSheet.create({
 
     picker : {
     ...Platform.select({
-    ios : { width : "96%", borderRadius : 8, borderColor : "#c0c0c0",
+    ios : { width : "96%", borderRadius : 8, borderColor : "#7157c4",
     borderWidth : 2,
     marginLeft : 10, marginBottom : 20, marginTop : 4
     },

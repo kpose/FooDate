@@ -3,6 +3,7 @@ import { Text, View, StyleSheet } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
 
 import ListScreen from './ListScreen';
+import AddScreen from './AddScreen';
 
 const TabIcon = (props) => (
     <Ionicons
@@ -22,7 +23,7 @@ export default class RestaurantsScreen extends React.Component {
     render() {
         return (
             <View style = {styles.container}>
-                <ListScreen />
+                <AddScreen />
             </View>
         );
     }
