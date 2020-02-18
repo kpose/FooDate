@@ -1,5 +1,4 @@
 import React from "react";
-import { View, Text } from "react-native";
 import { createBottomTabNavigator } from "react-navigation-tabs";
 import { Ionicons } from '@expo/vector-icons';
 
@@ -7,15 +6,15 @@ import { Ionicons } from '@expo/vector-icons';
 
 import PeopleScreen from "../screens/PeopleScreen";
 import DecisionScreen from "../screens/DecisionScreen";
-import RestaurantsScreen from "../screens/RestaurantsScreen";
-//import StackNavigator from './StackNavigator'
+//import RestaurantsScreen from "../screens/RestaurantsScreen";
+import StackNavigator from './StackNavigator'
 
 
 const BottomTabNavigator = createBottomTabNavigator(
     {
     People: PeopleScreen,
     Decision: DecisionScreen,
-    Restaurant: RestaurantsScreen
+    Restaurants: StackNavigator
 },
 {
     defaultNavigationOptions: ({ navigation }) => ({
@@ -32,7 +31,7 @@ const BottomTabNavigator = createBottomTabNavigator(
           
         } else if (routeName === 'Decision') {
           iconName = focused ? 'md-git-branch' : 'md-git-merge';
-        } else if (routeName === 'Restaurant') {
+        } else if (routeName === 'Restaurants') {
             iconName = focused ? 'md-restaurant' : 'ios-restaurant';
           }
 
