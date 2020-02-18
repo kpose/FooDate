@@ -4,13 +4,14 @@ import { createBottomTabNavigator } from "react-navigation-tabs";
 
 import PeopleScreen from "../screens/PeopleScreen";
 import DecisionScreen from "../screens/DecisionScreen";
-import RestaurantsScreen from "../screens/RestaurantsScreen";
+//import RestaurantsScreen from "../screens/RestaurantsScreen";
+import FeedStack from './StackNavigator'
 
 
 const BottomTabNavigator = createBottomTabNavigator({
     People: PeopleScreen,
     Decision: DecisionScreen,
-    Restaurant: RestaurantsScreen
+    Restaurant: FeedStack
 }, {
     tabBarOptions: {
         showLabel: false
