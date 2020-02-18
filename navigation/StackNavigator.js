@@ -6,7 +6,7 @@ import AddScreen from '../screens/AddScreen';
 import ListScreen from '../screens/ListScreen';
 
 
-const FeedStack = createStackNavigator({
+const StackNavigator = createStackNavigator({
     List: ListScreen,
     AddScreen: AddScreen,
   },
@@ -14,7 +14,7 @@ const FeedStack = createStackNavigator({
     initialRouteName: 'List',
   });
   
-  export default createAppContainer(FeedStack);
+  export default createAppContainer(StackNavigator);
 
 
   

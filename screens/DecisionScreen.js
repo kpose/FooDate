@@ -4,20 +4,18 @@ import { Ionicons } from '@expo/vector-icons';
 
 import CustomTextInput from '../components/CustomTextInput';
 
-const TabIcon = (props) => (
+/*const TabIcon = (props) => (
     <Ionicons
-      name={'ios-hourglass'}
+      name={'md-restaurant'}
       size={35}
       color={props.focused ? 'blue' : 'darkgrey'}
     />
-  )
+  )*/
 
 
 export default class DecisionScreen extends React.Component {
 
-    static navigationOptions = {
-        tabBarIcon: TabIcon
-    };
+   
 
 
     render() {

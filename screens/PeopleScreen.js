@@ -4,20 +4,17 @@ import { Ionicons } from '@expo/vector-icons';
 
 import CustomButton from '../components/CustomButton';
 
-const TabIcon = (props) => (
+/*const TabIcon = (props) => (
     <Ionicons
-      name={'md-people'}
+      name={'md-restaurant'}
       size={35}
       color={props.focused ? 'blue' : 'darkgrey'}
     />
-  )
+  )*/
   
 export default class PeopleScreen extends React.Component {
 
-    static navigationOptions = {
-        tabBarIcon: TabIcon
-    };
-
+  
 
     render() {
         return (
