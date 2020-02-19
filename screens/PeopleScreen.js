@@ -19,7 +19,7 @@ export default class PeopleScreen extends React.Component {
     render() {
         return (
             <View style = {styles.container}>
-                <CustomButton />
+               
             </View>
         );
     }

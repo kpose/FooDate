@@ -21,7 +21,7 @@ export default class DecisionScreen extends React.Component {
     render() {
         return (
             <View style = {styles.container}>
-                <CustomTextInput />
+                
             </View>
         );
     }
