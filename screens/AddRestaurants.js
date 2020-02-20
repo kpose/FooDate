@@ -5,7 +5,7 @@ import Constants from 'expo-constants';
 import CustomButton from "../components/CustomButton";
 
 
-export default class AddScreen extends React.Component {
+export default class AddRestaurants extends React.Component {
 
     constructor(inProps) {
         super(inProps);
@@ -43,7 +43,9 @@ export default class AddScreen extends React.Component {
               <Picker.Item label="German" value="German" />
               <Picker.Item label="Greek" value="Greek" />
               <Picker.Item label="Haitian" value="Haitian" />
+              <Picker.Item label="Hausa" value="Hausa" />
               <Picker.Item label="Hawaiian" value="Hawaiian" />
+              <Picker.Item label="Igbo" value="Igbo" />
               <Picker.Item label="Indian" value="Indian" />
               <Picker.Item label="Irish" value="Irish" />
               <Picker.Item label="Italian" value="Italian" />
@@ -63,7 +65,7 @@ export default class AddScreen extends React.Component {
               <Picker.Item label="Portuguese" value="Portuguese" />
               <Picker.Item label="Russian" value="Russian" />
               <Picker.Item label="Salvadorian" value="Salvadorian" />
-              <Picker.Item label="Sandwiche Shop" value="Sandwiche Shop" />
+              <Picker.Item label="Sandwich Shop" value="Sandwich Shop" />
               <Picker.Item label="Scottish" value="Scottish" />
               <Picker.Item label="Seafood" value="Seafood" />
               <Picker.Item label="Spanish" value="Spanish" />
@@ -75,6 +77,7 @@ export default class AddScreen extends React.Component {
               <Picker.Item label="Tibetan" value="Tibetan" />
               <Picker.Item label="Turkish" value="Turkish" />
               <Picker.Item label="Welsh" value="Welsh" />
+              <Picker.Item label="Yoruba" value="Yoruba" />
             </Picker>
         </View>
 
@@ -162,45 +165,89 @@ export default class AddScreen extends React.Component {
 }
 
 const styles = StyleSheet.create({
-    addScreenContainer: {
-        marginTop : Constants.statusBarHeight
-    },
 
+    listScreenContainer : {
+      flex : 1,
+      alignItems : "center",
+      justifyContent : "center",
+      /* Branch on platform type for different styling. */
+      ...Platform.select({
+        ios : {
+          paddingTop : Constants.statusBarHeight
+        },
+        android : { }
+      })
+    },
+  
+    restaurantList : {
+      width : "94%"
+    },
+  
+    restaurantContainer : {
+      flexDirection : "row",
+      marginTop : 4,
+      marginBottom : 4,
+      borderColor : "#e0e0e0",
+      borderBottomWidth : 2,
+      alignItems : "center"
+    },
+  
+    restaurantName : {
+      flex : 1
+    },
+  
     addScreenContainer : {
-        flex: 1,
-        
-        paddingTop: 20,
-        width: "100%"
+      marginTop : Constants.statusBarHeight
     },
+  
+    addScreenInnerContainer : {
+      flex : 1,
+      alignItems : "center",
+      paddingTop : 20,
+      width : "100%"
+    },
+  
     addScreenFormContainer : {
-        width: "96%"
+      width : "96%"
     },
-
-    fieldLabel: {
-        marginLeft: 10
+  
+    fieldLabel : {
+      marginLeft : 10
     },
-    
+  
     pickerContainer : {
-        ...Platform.select({
+      ...Platform.select({
         ios : { },
-        android : { width : "96%", borderRadius : 8, borderColor : "#7157c4",
-       borderWidth : 2,
-        marginLeft : 10, marginBottom : 20, marginTop : 4
-        } 
-        })
-       },
-
+        android : {
+          width : "96%",
+          borderRadius : 8,
+          borderColor : "#c0c0c0",
+          borderWidth : 2,
+          marginLeft : 10,
+          marginBottom : 20,
+          marginTop : 4
+        }
+      })
+    },
+  
     picker : {
-    ...Platform.select({
-    ios : { width : "96%", borderRadius : 8, borderColor : "#7157c4",
-    borderWidth : 2,
-    marginLeft : 10, marginBottom : 20, marginTop : 4
+      ...Platform.select({
+        ios : {
+          width : "96%",
+          borderRadius : 8,
+          borderColor : "#c0c0c0",
+          borderWidth : 2,
+          marginLeft : 10,
+          marginBottom : 20,
+          marginTop : 4
+        },
+        android : { }
+      })
     },
-    android : { }
-    })
-    },
+  
     addScreenButtonsContainer : {
-        flexDirection: "row",
-        justifyContent : "center"
+      flexDirection : "row",
+      justifyContent : "center"
     }
-});
+  
+  });

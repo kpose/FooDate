@@ -3,19 +3,21 @@ import { createBottomTabNavigator } from "react-navigation-tabs";
 import { Ionicons } from '@expo/vector-icons';
 
 
-import PeopleScreen from "../screens/PeopleScreen";
+//import PeopleScreen from "../screens/PeopleScreen";
 import DecisionScreen from "../screens/DecisionScreen";
 //import RestaurantsScreen from "../screens/RestaurantsScreen";
-import StackNavigator from './StackNavigator'
+import RestaurantNavigator  from './RestaurantNavigator'
+import PeopleNavigator  from './PeopleNavigator'
 
 
 const BottomTabNavigator = createBottomTabNavigator(
     {
-    People: PeopleScreen,
+    People: PeopleNavigator,
     Decision: DecisionScreen,
-    Restaurants: StackNavigator
+    Restaurants: RestaurantNavigator 
 },
 {
+  initialRouteName: "Decision",
     defaultNavigationOptions: ({ navigation }) => ({
       tabBarIcon: ({ focused, horizontal, tintColor }) => {
         const { routeName } = navigation.state;

@@ -2,7 +2,7 @@ import React from 'react';
 import AnimatedSplash from "react-native-animated-splash-screen";
 
 import AppNavigator from './navigation/AppNavigator';
-import BottomTabNavigator from './navigation/BottomTabNavigator'
+//import BottomTabNavigator from './navigation/BottomTabNavigator'
 
 class App extends React.Component {
   state = {
@@ -23,7 +23,9 @@ class App extends React.Component {
         logoHeight={150}
         logoWidth={150}
       >
+
         <AppNavigator />
+        
       </AnimatedSplash>
     );
   }
