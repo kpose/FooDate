@@ -18,6 +18,25 @@ class ListScreen extends React.Component {
       };
   
     }
+
+  componentDidMount() {
+      BackHandler.addEventListener(
+        "hardwareBackPress", () => { return true; }
+      );
+  
+      // Get list of people.
+      AsyncStorage.getItem("people",
+        function(inError, inPeople) {
+          if (inPeople === null) {
+            inPeople = [ ];
+          } else {
+            inPeople = JSON.parse(inPeople);
+          }
+          this.setState({ listData : inPeople });
+        }.bind(this)
+      );
+  
+    };
  
     render() { return (
   
@@ -92,27 +111,7 @@ class ListScreen extends React.Component {
         </View>
       </Root>
   
-    ); } 
-
-    componentDidMount() {
-      BackHandler.addEventListener(
-        "hardwareBackPress", () => { return true; }
-      );
-  
-      // Get list of people.
-      AsyncStorage.getItem("people",
-        function(inError, inPeople) {
-          if (inPeople === null) {
-            inPeople = [ ];
-          } else {
-            inPeople = JSON.parse(inPeople);
-          }
-          this.setState({ listData : inPeople });
-        }.bind(this)
-      );
-  
-    };
-  
+    ); }   
   
   }
 

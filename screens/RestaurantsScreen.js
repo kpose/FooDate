@@ -18,6 +18,24 @@ class ListScreen extends React.Component {
       };
   
     } 
+
+    componentDidMount() {
+      BackHandler.addEventListener(
+        "hardwareBackPress", () => { return true; }
+      );
+  
+      AsyncStorage.getItem("restaurants",
+        function(inError, inRestaurants) {
+          if (inRestaurants === null) {
+            inRestaurants = [ ];
+          } else {
+            inRestaurants = JSON.parse(inRestaurants);
+          }
+          this.setState({ listData : inRestaurants });
+        }.bind(this)
+      );
+  
+    };  
     render() { return (
   
       <Root>
@@ -89,24 +107,6 @@ class ListScreen extends React.Component {
       </Root>
   
     ); }
-  
-    componentDidMount() {
-      BackHandler.addEventListener(
-        "hardwareBackPress", () => { return true; }
-      );
-  
-      AsyncStorage.getItem("restaurants",
-        function(inError, inRestaurants) {
-          if (inRestaurants === null) {
-            inRestaurants = [ ];
-          } else {
-            inRestaurants = JSON.parse(inRestaurants);
-          }
-          this.setState({ listData : inRestaurants });
-        }.bind(this)
-      );
-  
-    };  
   }
   
   
