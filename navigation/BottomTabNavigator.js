@@ -5,7 +5,7 @@ import { Ionicons } from '@expo/vector-icons';
 
 import PeopleScreen from "../screens/PeopleScreen";
 import DecisionScreen from "../screens/DecisionScreen";
-//import RestaurantsScreen from "../screens/RestaurantsScreen";
+import RestaurantsScreen from "../screens/RestaurantsScreen";
 import RestaurantNavigator  from './RestaurantNavigator'
 //import PeopleNavigator  from './PeopleNavigator'
 
@@ -14,7 +14,7 @@ const BottomTabNavigator = createBottomTabNavigator(
     {
     People: PeopleScreen,
     Decision: DecisionScreen,
-    Restaurants: RestaurantNavigator 
+    Restaurants: RestaurantsScreen 
 },
 {
   initialRouteName: "Decision",
