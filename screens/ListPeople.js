@@ -1,3 +1,4 @@
+/*
 import React from "react";
 import CustomButton from "../components/CustomButton";
 import { Alert, AsyncStorage, FlatList, Platform, StyleSheet, Text, View } from "react-native";
@@ -14,7 +15,7 @@ export default class ListPeople extends React.Component {
          };
     }
 
-    /*componentDidMount() {
+    componentDidMount() {
         BackHandler.addEventListener( "hardwareBackPress", () => { return true; } );
 
         AsyncStorage.getItem("people ",
@@ -27,7 +28,7 @@ export default class ListPeople extends React.Component {
                 this.setState({ listData : inPeople  });
             }.bind(this)
             );
-    };*/
+    };
 
     
 
@@ -35,13 +36,13 @@ export default class ListPeople extends React.Component {
         return (
           <Root>
           <View style={styles.listScreenContainer}>
-            { /* ########## Add Person button ########## */ }
+            { }
             <CustomButton
               text="Add Person"
               width="94%"
               onPress={ () => { this.props.navigation.navigate("AddPeople"); } }
             />
-            { /* ########## Person list ########## */ }
+            { }
             <FlatList
               style={styles.personList}
               data={this.state.listData}
@@ -114,7 +115,7 @@ const styles = StyleSheet.create({
       flex : 1,
       alignItems : "center",
       justifyContent : "center",
-      /* Branch on platform type for different styling. */
+       Branch on platform type for different styling. 
       ...Platform.select({
         ios : {
           paddingTop : Constants.statusBarHeight
@@ -194,4 +195,5 @@ const styles = StyleSheet.create({
       justifyContent : "center"
     }
   
-  });
+  }); 
+*/

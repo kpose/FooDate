@@ -11,6 +11,7 @@
     "@react-native-community/masked-view": "0.1.5",
     "@react-navigation/bottom-tabs": "^5.0.1",
     "expo": "~36.0.0",
+    "expo-dark-mode-switch": "^0.0.1",
     "native-base": "^2.13.8",
     "react": "~16.9.0",
     "react-dom": "~16.9.0",

@@ -66,7 +66,7 @@ export default class DecisionScreen extends React.Component {
         } }
       >
 
-        <Image source ={require("../images/its-decision-time.ios.png") } />
+        <Image source ={require("../images/its-decision-time.android.png") } />
         <Text style = {{paddingTop: 20 }}>(Click the food to get going)</Text>
 
       </TouchableOpacity>

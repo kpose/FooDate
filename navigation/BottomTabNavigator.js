@@ -3,16 +3,16 @@ import { createBottomTabNavigator } from "react-navigation-tabs";
 import { Ionicons } from '@expo/vector-icons';
 
 
-//import PeopleScreen from "../screens/PeopleScreen";
+import PeopleScreen from "../screens/PeopleScreen";
 import DecisionScreen from "../screens/DecisionScreen";
 //import RestaurantsScreen from "../screens/RestaurantsScreen";
 import RestaurantNavigator  from './RestaurantNavigator'
-import PeopleNavigator  from './PeopleNavigator'
+//import PeopleNavigator  from './PeopleNavigator'
 
 
 const BottomTabNavigator = createBottomTabNavigator(
     {
-    People: PeopleNavigator,
+    People: PeopleScreen,
     Decision: DecisionScreen,
     Restaurants: RestaurantNavigator 
 },

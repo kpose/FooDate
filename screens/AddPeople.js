@@ -1,3 +1,4 @@
+/*
 import React from "react";
 import CustomTextInput from "../components/CustomTextInput";
 import { Alert, AsyncStorage, SafeAreaView, BackHandler, FlatList, Picker, Platform, ScrollView, StyleSheet, Text, View } from "react-native";
@@ -31,7 +32,7 @@ export default class AddScreen extends React.Component {
                 stateHolder={this}
                 stateFieldName="firstName"
               />
-              { /* ########## Last Name ########## */ }
+              { }
               <CustomTextInput
                 label="Last Name"
                 maxLength={20}
@@ -102,7 +103,7 @@ const styles = StyleSheet.create({
       flex : 1,
       alignItems : "center",
       justifyContent : "center",
-      /* Branch on platform type for different styling. */
+      Branch on platform type for different styling. 
       ...Platform.select({
         ios : {
           paddingTop : Constants.statusBarHeight
@@ -183,3 +184,4 @@ const styles = StyleSheet.create({
     }
   
   });
+*/
