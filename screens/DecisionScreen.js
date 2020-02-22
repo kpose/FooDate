@@ -88,6 +88,23 @@ class WhoIsGoingScreen extends React.Component {
     };
   }
 
+  componentDidMount() {
+    BackHandler.addEventListener("hardwareBackPress", () => { return true; });
+    AsyncStorage.getItem("people",
+      function(inError, inPeople) {
+        if (inPeople === null) {
+        inPeople = [ ];
+      } else {
+        inPeople = JSON.parse(inPeople);
+      }
+      const selected = { };
+      for (const person of inPeople) { selected[person.key] = false; }
+      this.setState({ people : inPeople, selected : selected });
+      
+    }.bind(this)
+    );
+  };
+
   render() {
     return(
       <View style={styles.listScreenContainer}>
