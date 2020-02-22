@@ -127,8 +127,29 @@ class WhoIsGoingScreen extends React.Component {
           </TouchableOpacity>
         }
       />
+
+      <CustomButton text = "Next" width="94%"
+        onPress = { () =>{
+          participants = [ ];
+          for (const person of this.state.people) {
+            if(this.state.selected[person.key]) {
+              const participant = Object.assign({}, person);
+              participant.vetoed = "no";
+              participants.push(participant);
+            }
+          }
+          if (participants.length === 0) {
+            Alert.alert("Uhh, you awake?",
+            "You didn't select anyone to go. Want to give this another try?",
+            [ {text: 'OK' } ], { cancelable : false }
+            );
+          }else {
+            this.props.navigation.navigate("PreFiltersScreen");
+          }
+        }}
+        />
       </View>
-    )
+    );
   }
 }
 
