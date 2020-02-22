@@ -112,7 +112,6 @@ class ListScreen extends React.Component {
       </Root>
   
     ); }   
-  
   }
 
 class AddScreen extends React.Component {
@@ -241,7 +240,7 @@ const styles = StyleSheet.create({
         ios : {
           paddingTop : Constants.statusBarHeight
         },
-        android : { }
+        android : { marginTop: 20 }
       })
     },
   

@@ -321,27 +321,20 @@ class ListScreen extends React.Component {
 
 
 const RestaurantsScreen = createStackNavigator(
-
-    /* ----------  Routes. ----------  */
     {
       ListScreen : { screen : ListScreen },
       AddScreen : { screen : AddScreen }
-    }, /* End routes. */
-  
-    /* ----------  Options. ----------  */
+    }, 
     {
       headerMode : "none",
       initialRouteName : "ListScreen"
-    } /* End options. */
+    } 
   
-  ); /* End StackNavigator definition. */
+  );
   
-  
-  // Export the component.
+ 
 export default createAppContainer(RestaurantsScreen);
   
-
-
 const styles = StyleSheet.create({
 
     listScreenContainer : {
@@ -353,7 +346,7 @@ const styles = StyleSheet.create({
         ios : {
           paddingTop : Constants.statusBarHeight
         },
-        android : { }
+        android : { marginTop: 20 }
       })
     },
   

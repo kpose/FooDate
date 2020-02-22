@@ -220,19 +220,12 @@ const styles = StyleSheet.create({
 
 
 const DecisionScreen = createStackNavigator(
-  
-    
   {
     DecisionTimeScreen : { screen : DecisionTimeScreen },
     WhoIsGoingScreen : { screen : WhoIsGoingScreen },
   }, 
-
- 
   {
     headerMode : "none"
   } 
-
 ); 
-
-
 export default createAppContainer(DecisionScreen);
