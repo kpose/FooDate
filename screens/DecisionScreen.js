@@ -1,7 +1,8 @@
 import React from 'react';
 import CustomButton  from '../components/CustomButton';
 import { Alert, AsyncStorage, BackHandler, Button, FlatList, Image, Modal, Picker, ssPlatform, ScrollView, StyleSheet, Text, TouchableOpacity, View } from "react-native";
-import { StackNavigator } from "react-navigation";
+import { createAppContainer } from 'react-navigation';
+import { createStackNavigator } from 'react-navigation-stack';
 import { CheckBox } from "native-base";
 import Constants from 'expo-constants';
 
@@ -16,13 +17,14 @@ const getRandom = (inMin, inMax) => {
     return Math.floor(Math.random() * (inMax -inMin + 1)) +inMin;
 }
 
-export default class DecisionScreen extends React.Component {
+
+class DecisionTimeScreen extends React.Component {
     render() {
         return (
             <View style={styles.decisionTimeScreenContainer}>
                 <TouchableOpacity style={styles.decisionTimeScreenTouchable}
         onPress={ () => {
-          // Make sure there's people.
+          
           AsyncStorage.getItem("people",
             function(inError, inPeople) {
               if (inPeople === null) {
@@ -39,7 +41,7 @@ export default class DecisionScreen extends React.Component {
                   { cancelable : false }
                 );
               } else {
-                // Ok, there's people, now make sure there's restaurants.
+                
                 AsyncStorage.getItem("restaurants",
                   function(inError, inRestaurants) {
                     if (inRestaurants === null) {
@@ -67,7 +69,7 @@ export default class DecisionScreen extends React.Component {
       >
 
         <Image source ={require("../images/its-decision-time.android.png") } />
-        <Text style = {{paddingTop: 20 }}>(Click the food to get going)</Text>
+        <Text style = {{paddingTop: 20 }}>( Click the food to get going )</Text>
 
       </TouchableOpacity>
                 
@@ -75,6 +77,64 @@ export default class DecisionScreen extends React.Component {
         );
     }
 }
+
+class WhoIsGoingScreen extends React.Component {
+
+  constructor(inProps) {
+    super(inProps);
+    this.state = { 
+      people : [ ], 
+      selected : { } 
+    };
+  }
+
+  render() {
+    return(
+      <View style={styles.listScreenContainer}>
+
+      <Text style={styles.whoIsGoingHeadline}>Who's Going?</Text>
+
+      { }
+      <FlatList
+        style={{width : "94%"}}
+        data={this.state.people}
+        renderItem={ ({item}) =>
+          <TouchableOpacity
+            style={styles.whoIsGoingItemTouchable}
+            onPress={
+              function() {
+                
+                const selected = this.state.selected;
+                selected[item.key] = !selected[item.key];
+                this.setState({ selected : selected });
+              }.bind(this)
+            }
+          >
+            <CheckBox
+              style={styles.whoIsGoingCheckbox}
+              checked={this.state.selected[item.key]}
+              onPress={
+                function() {
+                 
+                  const selected = this.state.selected;
+                  selected[item.key] = !selected[item.key];
+                  this.setState({ selected : selected });
+                }.bind(this)
+              } />
+            <Text style={styles.whoIsGoingName}>
+              {item.firstName} {item.lastName} ({item.relationship})
+            </Text>
+          </TouchableOpacity>
+        }
+      />
+      </View>
+    )
+  }
+}
+
+
+
+
 
 const styles = StyleSheet.create({
     decisionTimeScreenContainer: {
@@ -86,5 +146,55 @@ const styles = StyleSheet.create({
     decisionTimeScreenTouchable: {
         alignItems: "center",
         justifyContent: "center"
+    },
+
+    listScreenContainer: {
+      flex: 1,
+      alignItems: "center",
+      justifyContent: "center",
+      ...Platform.select({ios : {
+        paddingTop : Constants.statusBarHeight
+      }, android : { }
+    })
+    },
+
+    whoIsGoingHeadline: {
+      fontSize: 30,
+      marginTop : 20, 
+      marginBottom: 20
+    },
+
+    whoIsGoingItemTouchable:{
+      flexDirection: 'row',
+      marginTop: 10,
+      marginBottom: 10
+    },
+
+    whoIsGoingCheckbox: {
+      marginRight: 20
+    },
+
+    whoIsGoingName: {
+      flex: 1
     }
 });
+
+
+
+const DecisionScreen = createStackNavigator(
+  
+    
+  {
+    DecisionTimeScreen : { screen : DecisionTimeScreen },
+    WhoIsGoingScreen : { screen : WhoIsGoingScreen },
+  }, 
+
+ 
+  {
+    headerMode : "none"
+  } 
+
+); 
+
+
+export default createAppContainer(DecisionScreen);
