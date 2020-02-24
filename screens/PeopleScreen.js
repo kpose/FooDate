@@ -6,8 +6,10 @@ import { createAppContainer } from 'react-navigation';
 import { createStackNavigator } from 'react-navigation-stack';
 import { Root, Toast } from "native-base";
 import Constants from 'expo-constants';
+
   
 class ListScreen extends React.Component {
+  _isMounted = false;
 
     constructor(inProps) {
   
@@ -19,10 +21,15 @@ class ListScreen extends React.Component {
   
     }
 
-  componentDidMount() {
+    componentDidMount() {
+      this._isMounted = true;
+
+      // Block hardware back button on Android.
       BackHandler.addEventListener(
         "hardwareBackPress", () => { return true; }
       );
+
+     
   
       // Get list of people.
       AsyncStorage.getItem("people",
@@ -32,11 +39,17 @@ class ListScreen extends React.Component {
           } else {
             inPeople = JSON.parse(inPeople);
           }
-          this.setState({ listData : inPeople });
+          if (this._isMounted) {
+            this.setState({ listData : inPeople });
+          }
         }.bind(this)
       );
   
     };
+
+    componentWillUnmount() {
+      this._isMounted = false;
+    }
  
     render() { return (
   
@@ -111,7 +124,8 @@ class ListScreen extends React.Component {
         </View>
       </Root>
   
-    ); }   
+    ); }  
+    
   }
 
 class AddScreen extends React.Component {

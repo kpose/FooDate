@@ -302,9 +302,10 @@ class ListScreen extends React.Component {
                       inRestaurants = JSON.parse(inRestaurants);
                     }
                     inRestaurants.push(this.state);
+                    //const listed = this.state;
                     AsyncStorage.setItem("restaurants",
                       JSON.stringify(inRestaurants), function() {
-                        this.props.navigation.navigate("ListScreen");
+                        this.props.navigation.navigate("ListScreen", /*{listed}*/);
                       }.bind(this)
                     );
                   }.bind(this)
