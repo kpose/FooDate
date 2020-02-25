@@ -395,7 +395,60 @@ class PreFiltersScreen extends React.Component {
 
 
 class ChoiceScreen extends React.Component {
-  
+    constructor(inProps) {
+      super(inProps);
+      this.state = {
+        participantsList : participants,
+        participantsListRefresh : false,
+        selectedVisible : false,
+        vetoVisible : false,
+        vetoDisabled : false,
+        vetoText : "Veto"
+      };
+    }
+
+    render() {
+      return(
+        <View style = {styles.listScreenContainer}>
+          <Modal presentationStyle={"formSheet"} visible={this.state.selectedVisible}
+          animationType={"slide"} onRequestClose={ () => { } }>
+            <View style = {styles.selectedContainer}>
+              <View style={styles.selectedInnerContainer}>
+                <Text style = {styles.selectedName}>{chosenRestaurant.name}</Text>
+                <View style={styles.selectedDetails}>
+                  <Text style = {styles.selectedDetailsLine}>
+                    This is a {"\u2605".repeat(chosenRestaurant.rating)} star
+                  </Text>
+                  <Text style={styles.selectedDetailsLine}>
+                    {chosenRestaurant.cuisine} restaurant
+                  </Text>
+                  <Text style={styles.selectedDetailsLine}>
+                      with a price rating of {"$".repeat(chosenRestaurant.price)}
+                  </Text>
+                  <Text style={styles.selectedDetailsLine}>
+                    that {chosenRestaurant.delivery === "Yes" ? "DOES" : "DOES NOT"} deliver.
+                  </Text>
+                </View>
+                <CustomButton text = "Accept" width="94%" 
+                              onPress={() => {
+                  this.setState({ selectedVisible : false, vetoVisible : false });
+                  this.props.navigation.navigate("PostChoiceScreen");
+                }}
+                />
+
+                <CustomButton text = {this.state.vetoText} width="94%" 
+                              disabled = {this.state.vetoDisabled ? "true" : "false"} 
+                              onPress={() => {
+                  this.setState({ selectedVisible : false, vetoVisible : false });
+                  this.props.navigation.navigate("PostChoiceScreen");
+                }}
+                />
+              </View>
+            </View>
+          </Modal>
+        </View>
+      )
+    }
 }
 
 
@@ -480,7 +533,30 @@ const styles = StyleSheet.create({
         ios : { width: "96%", borderRadius : 8, borderColor :  "#c0c0c0", borderWidth : 2, marginLeft: 10, marginBottom: 20, marginTop: 4 },
         android: {  }, 
       })
-    }
+    },
+
+    selectedContainer : { 
+      flex: 1, 
+      justifyContent: "center"
+     },
+
+     selectedInnerContainer: {
+       alignItems: "center"
+     },
+
+     selectedName : {
+       fontSize: 32
+     },
+
+     selectedDetails : {
+       paddingTop: 80,
+       paddingBottom: 80,
+       alignItems: "center"
+     },
+
+     selectedDetailsLine: {
+       fontSize: 18
+     }
 });
 
 
@@ -489,7 +565,8 @@ const DecisionScreen = createStackNavigator(
   {
     DecisionTimeScreen : { screen : DecisionTimeScreen },
     WhoIsGoingScreen : { screen : WhoIsGoingScreen },
-    PreFiltersScreen : { screen : PreFiltersScreen }
+    PreFiltersScreen : { screen : PreFiltersScreen },
+    ChoiceScreen : { screen : ChoiceScreen}
   }, 
   {
     headerMode : "none"
