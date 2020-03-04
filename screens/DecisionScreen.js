@@ -35,7 +35,7 @@ class DecisionTimeScreen extends React.Component {
               if (inPeople.length === 0) {
                 Alert.alert(
                   "Not so fast, Easy!!",
-                  "You haven't added any anyone. " +
+                  "You haven't added anyone yet. " +
                   "You should probably do that first, no?",
                   [ { text : "OK" } ],
                   { cancelable : false }
@@ -393,6 +393,7 @@ class PreFiltersScreen extends React.Component {
   }
 }
 
+{/* Choice Screen */}
 
 class ChoiceScreen extends React.Component {
     constructor(inProps) {
@@ -410,8 +411,10 @@ class ChoiceScreen extends React.Component {
     render() {
       return(
         <View style = {styles.listScreenContainer}>
+
+        {/* Chosen restaurant modal */}
           <Modal presentationStyle={"formSheet"} visible={this.state.selectedVisible}
-          animationType={"slide"} onRequestClose={ () => { } }>
+          animationType={"fade"} onRequestClose={ () => { } }>
             <View style = {styles.selectedContainer}>
               <View style={styles.selectedInnerContainer}>
                 <Text style = {styles.selectedName}>{chosenRestaurant.name}</Text>
@@ -446,11 +449,181 @@ class ChoiceScreen extends React.Component {
               </View>
             </View>
           </Modal>
+
+          {/* Veto Modal */}
+
+          <Modal
+            presentationStyle={"formSheet"}
+            visible={this.state.vetoVisible}
+            animationType={"slide"}
+            onRequestClose={ () => { } }
+          >
+        <View style={styles.vetoContainer}>
+          <View style={styles.vetoContainerInner}>
+            <Text style={styles.vetoHeadline}>Who's vetoing?</Text>
+            <ScrollView style={styles.vetoScrollViewContainer}>
+              { participants.map((inValue) => {
+                  if (inValue.vetoed === "no") {
+                    return <TouchableOpacity key={inValue.key}
+                      style={ styles.vetoParticipantContainer }
+                      onPress={ () => {
+                        // Mark the vetoer as having vetoed.
+                        for (const participant of participants) {
+                          if (participant.key === inValue.key) {
+                            participant.vetoed = "yes";
+                            break;
+                          }
+                        }
+                        // Make sure there's still at least one person that
+                        // can veto, otherwise disable the Veto button.
+                        let vetoStillAvailable = false;
+                        let buttonLabel = "No Vetoes Left";
+                        for (const participant of participants) {
+                          if (participant.vetoed === "no") {
+                            vetoStillAvailable = true;
+                            buttonLabel = "Veto";
+                            break;
+                          }
+                        }
+                        // Delete the vetoed restaurant.
+                        for (let i = 0; i < filteredRestaurants.length; i++) {
+                          if (filteredRestaurants[i].key === chosenRestaurant.key) {
+                            filteredRestaurants.splice(i, 1);
+                            break;
+                          }
+                        }
+                        // Update state.
+                        this.setState({
+                          selectedVisible : false,
+                          vetoVisible : false,
+                          vetoText : buttonLabel,
+                          vetoDisabled : !vetoStillAvailable,
+                          participantsListRefresh : !this.state.participantsListRefresh
+                        });
+                        // If there's only one restaurant left then
+                        // that's the choice.
+                        if (filteredRestaurants.length === 1) {
+                          this.props.navigation.navigate("PostChoiceScreen");
+                        }
+                      } }
+                    >
+                      <Text style={styles.vetoParticipantName}>
+                        {inValue.firstName + " " + inValue.lastName}
+                      </Text>
+                    </TouchableOpacity>;
+                  }
+                })
+              }
+            </ScrollView>
+            <View style={styles.vetoButtonContainer}>
+              <CustomButton
+                text="Never Mind"
+                width="94%"
+                onPress={ () => {
+                  this.setState({
+                    selectedVisible : true, vetoVisible : false
+                  });
+                } }
+              />
+            </View>
+          </View>
         </View>
-      )
+      </Modal>
+
+      { /* ########## Main choice screen. ########## */ }
+      <Text style={styles.choiceScreenHeadline}>Choice Screen</Text>
+      <FlatList
+        style={styles.choiceScreenListContainer}
+        data={this.state.participantsList}
+        extraData={this.state.participantsListRefresh}
+        renderItem={ ({item}) =>
+          <View style={styles.choiceScreenListItem}>
+            <Text style={styles.choiceScreenListItemName}>
+              {item.firstName} {item.lastName} ({item.relationship})
+            </Text>
+            <Text>Vetoed: {item.vetoed}</Text>
+          </View>
+        }
+      />
+      <CustomButton
+        text="Randomly Choose"
+        width="94%"
+        onPress={ () => {
+          // Randomly pick one.
+          const selectedNumber = getRandom(0, filteredRestaurants.length - 1);
+          // Get the restaurant descriptor.
+          chosenRestaurant = filteredRestaurants[selectedNumber];
+          // Show the selected modal
+          this.setState({ selectedVisible : true });
+        } }
+      />
+        </View>
+      );
     }
 }
 
+
+class PostChoiceScreen extends React.Component {
+  constructor(inProps)
+  {
+    super(inProps);
+  }
+
+  render() {
+    return (
+      <View style = {styles.postChoiceScreenContainer}>
+        <View><Text style = {styles.postChoiceHeadline}>Enjoy your meal!</Text></View>
+        <View style ={styles.postChoiceDetailsContainer}>
+
+          <View style = {styles.postChoiceDetailsRowContainer}>
+            <Text style = {styles.postChoiceDetailsLabel}>Name: </Text>
+            <Text style = {styles.postChoiceDetailsValue}>{chosenRestaurant.name}</Text>
+          </View>
+
+          <View style = {styles.postChoiceDetailsRowContainer}>
+            <Text style ={styles.postChoiceDetailsLabel}>Cuisine: </Text>
+            <Text style = {styles.postChoiceDetailsValue}>{chosenRestaurant.cuisine}</Text>
+          </View>
+
+          <View style = {styles.postChoiceDetailsRowContainer}>
+            <Text style ={styles.postChoiceDetailsLabel}>Price: </Text>
+            <Text style = {styles.postChoiceDetailsValue}>{"$".repeat(chosenRestaurant.price)}</Text>
+          </View>
+
+          <View style = {styles.postChoiceDetailsRowContainer}>
+            <Text style ={styles.postChoiceDetailsLabel}>Rating: </Text>
+            <Text style = {styles.postChoiceDetailsValue}>{"\u2605".repeat(chosenRestaurant.rating)}</Text>
+          </View>
+
+          <View style = {styles.postChoiceDetailsRowContainer}>
+            <Text style ={styles.postChoiceDetailsLabel}>Phone: </Text>
+            <Text style = {styles.postChoiceDetailsValue}>{chosenRestaurant.phone}</Text>
+          </View>
+
+          <View style = {styles.postChoiceDetailsRowContainer}>
+            <Text style ={styles.postChoiceDetailsLabel}>Address: </Text>
+            <Text style = {styles.postChoiceDetailsValue}>{chosenRestaurant.address}</Text>
+          </View>
+
+          <View style = {styles.postChoiceDetailsRowContainer}>
+            <Text style ={styles.postChoiceDetailsLabel}>Website: </Text>
+            <Text style = {styles.postChoiceDetailsValue}>{chosenRestaurant.webSite}</Text>
+          </View>
+
+          <View style = {styles.postChoiceDetailsRowContainer}>
+            <Text style ={styles.postChoiceDetailsLabel}>Delivery: </Text>
+            <Text style = {styles.postChoiceDetailsValue}>{chosenRestaurant.delivery}</Text>
+          </View>
+
+        </View>
+        <View style={{ paddingTop:80}}>
+        <Button title="All Done"
+          onPress={ () => this.props.navigation.navigate("DecisionTimeScreen") }/>
+        </View>
+      </View>
+    );
+  }
+}
 
 const styles = StyleSheet.create({
     decisionTimeScreenContainer: {
@@ -524,13 +697,28 @@ const styles = StyleSheet.create({
     pickerContainer: {
       ...Platform.select({
         ios : { },
-        android: { width: "96%", borderRadius : 8, borderColor :  "#c0c0c0", borderWidth : 2, marginLeft: 10, marginBottom: 20, marginTop: 4 }, 
+        android: { 
+          width: "96%", 
+          borderRadius : 8, 
+          borderColor :  "#c0c0c0",
+          borderWidth : 2, 
+          marginLeft: 10, 
+          marginBottom: 20, 
+          marginTop: 4 }, 
       })
     },
 
     picker: {
       ...Platform.select({
-        ios : { width: "96%", borderRadius : 8, borderColor :  "#c0c0c0", borderWidth : 2, marginLeft: 10, marginBottom: 20, marginTop: 4 },
+        ios : { 
+          width: "96%", 
+          borderRadius : 8, 
+          borderColor :  "#c0c0c0", 
+          borderWidth : 2, 
+          marginLeft: 10, 
+          marginBottom: 20, 
+          marginTop: 4 },
+
         android: {  }, 
       })
     },
@@ -556,7 +744,95 @@ const styles = StyleSheet.create({
 
      selectedDetailsLine: {
        fontSize: 18
-     }
+     },
+
+     vetoContainer: {
+       flex: 1,
+       justifyContent: "center"
+     },
+
+     vetoContainerInner: { 
+       justifyContent : "center", 
+       alignItems : "center",
+       alignContent : "center" 
+      },
+
+      vetoHeadline : { 
+        fontSize : 32, 
+        fontWeight : "bold" 
+      },
+
+      vetoScrollViewContainer : { 
+        height : "50%" 
+      },
+
+      vetoParticipantContainer : {
+        paddingTop : 20, 
+        paddingBottom : 20 
+      },
+
+      vetoParticipantName : { 
+        fontSize : 24 
+      },
+
+      vetoButtonContainer : { 
+        width : "100%", 
+        alignItems : "center", 
+        paddingTop : 40 
+      },
+
+      choiceScreenListContainer : { 
+        width : "94%" 
+      },
+
+      choiceScreenListItem : { 
+        flexDirection : "row",
+        marginTop : 4, 
+        marginBottom : 4,
+        borderColor : "#e0e0e0", 
+        borderBottomWidth : 2, 
+        alignItems : "center" 
+      },
+
+      choiceScreenListItemName : { 
+        flex : 1 
+      },
+
+      postChoiceScreenContainer : { 
+        flex : 1, 
+        justifyContent : "center",
+        alignItems : "center",
+        alignContent : "center"
+       },
+
+      postChoiceHeadline : { 
+         fontSize : 32, 
+         paddingBottom : 80 
+        },
+
+      postChoiceDetailsContainer : { 
+        borderWidth : 2, 
+        borderColor : "#000000", 
+        padding : 10,
+        width : "96%"
+       },
+
+      postChoiceDetailsRowContainer : { 
+        flexDirection : "row", 
+        justifyContent : "flex-start",
+        alignItems : "flex-start", 
+        alignContent : "flex-start" 
+      },
+
+      postChoiceDetailsLabel : { 
+        width : 70, 
+        fontWeight : "bold", 
+        color : "#ff0000" 
+      },
+      postChoiceDetailsValue : { 
+        width : 300 
+      }
+
 });
 
 
@@ -566,7 +842,8 @@ const DecisionScreen = createStackNavigator(
     DecisionTimeScreen : { screen : DecisionTimeScreen },
     WhoIsGoingScreen : { screen : WhoIsGoingScreen },
     PreFiltersScreen : { screen : PreFiltersScreen },
-    ChoiceScreen : { screen : ChoiceScreen}
+    ChoiceScreen : { screen : ChoiceScreen},
+    PostChoiceScreen : { screen : PostChoiceScreen }
   }, 
   {
     headerMode : "none"

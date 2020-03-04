@@ -4,9 +4,6 @@ import { TouchableOpacity, Text } from "react-native";
 
 
 class CustomButton extends Component {
-
-
-
   render() {
 
     const {
