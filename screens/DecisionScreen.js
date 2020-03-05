@@ -1,5 +1,7 @@
 import React from 'react';
 import CustomButton  from '../components/CustomButton';
+import CustomButton2  from '../components/CustomButton2';
+import CustomButton3  from '../components/CustomButton3';
 import { Alert, AsyncStorage, BackHandler, Button, FlatList, Image, Modal, Picker, ssPlatform, ScrollView, StyleSheet, Text, TouchableOpacity, View } from "react-native";
 import { createAppContainer } from 'react-navigation';
 import { createStackNavigator } from 'react-navigation-stack';
@@ -10,6 +12,10 @@ import Constants from 'expo-constants';
 let participants = null;
 let filteredRestaurants = null;
 let chosenRestaurant = { };
+
+var str1 = "All Done ";
+var str2 = "\u2714";
+var res = str1.concat(str2);
 
 const getRandom = (inMin, inMax) => {
     inMin = Math.ceil(inMin);
@@ -145,7 +151,7 @@ class WhoIsGoingScreen extends React.Component {
         }
       />
 
-      <CustomButton text = "Next" width="94%"
+      <CustomButton3 text = "Next" width="94%"
         onPress = { () =>{
           participants = [ ];
           for (const person of this.state.people) {
@@ -257,7 +263,7 @@ class PreFiltersScreen extends React.Component {
           </View>
 
           {/* PRICE FILTER */}
-          <Text style={styles.fieldLabel}>Price &lt;=</Text>
+          <Text style={styles.fieldLabel}>Price</Text>
           <View style={styles.pickerContainer}>
             <Picker
               style={styles.picker}
@@ -277,7 +283,7 @@ class PreFiltersScreen extends React.Component {
           </View>
 
               {/* RATING FILTER */}
-          <Text style={styles.fieldLabel}>Rating &gt;=</Text>
+          <Text style={styles.fieldLabel}>Rating</Text>
           <View style={styles.pickerContainer}>
             <Picker
               style={styles.picker}
@@ -297,7 +303,7 @@ class PreFiltersScreen extends React.Component {
           </View>
 
                 {/* DELIVERY FILTER */}
-          <Text style={styles.fieldLabel}>Delivery?</Text>
+          <Text style={styles.fieldLabel}>Do they offer delivery?</Text>
           <View style={styles.pickerContainer}>
             <Picker
               style={styles.picker}
@@ -314,7 +320,7 @@ class PreFiltersScreen extends React.Component {
           </View>
 
          
-          <CustomButton
+          <CustomButton2
             text="Next"
             width="94%"
             onPress={ () => {
@@ -396,8 +402,15 @@ class PreFiltersScreen extends React.Component {
 {/* Choice Screen */}
 
 class ChoiceScreen extends React.Component {
-    constructor(inProps) {
-      super(inProps);
+
+
+  /**
+   * Constructor.
+   */
+  constructor(inProps) {
+
+    super(inProps);
+
       this.state = {
         participantsList : participants,
         participantsListRefresh : false,
@@ -406,58 +419,68 @@ class ChoiceScreen extends React.Component {
         vetoDisabled : false,
         vetoText : "Veto"
       };
-    }
 
-    render() {
-      return(
-        <View style = {styles.listScreenContainer}>
+  } /* End constructor. */
 
-        {/* Chosen restaurant modal */}
-          <Modal presentationStyle={"formSheet"} visible={this.state.selectedVisible}
-          animationType={"fade"} onRequestClose={ () => { } }>
-            <View style = {styles.selectedContainer}>
-              <View style={styles.selectedInnerContainer}>
-                <Text style = {styles.selectedName}>{chosenRestaurant.name}</Text>
-                <View style={styles.selectedDetails}>
-                  <Text style = {styles.selectedDetailsLine}>
-                    This is a {"\u2605".repeat(chosenRestaurant.rating)} star
-                  </Text>
-                  <Text style={styles.selectedDetailsLine}>
-                    {chosenRestaurant.cuisine} restaurant
-                  </Text>
-                  <Text style={styles.selectedDetailsLine}>
-                      with a price rating of {"$".repeat(chosenRestaurant.price)}
-                  </Text>
-                  <Text style={styles.selectedDetailsLine}>
-                    that {chosenRestaurant.delivery === "Yes" ? "DOES" : "DOES NOT"} deliver.
-                  </Text>
-                </View>
-                <CustomButton text = "Accept" width="94%" 
-                              onPress={() => {
-                  this.setState({ selectedVisible : false, vetoVisible : false });
-                  this.props.navigation.navigate("PostChoiceScreen");
-                }}
-                />
 
-                <CustomButton text = {this.state.vetoText} width="94%" 
-                              disabled = {this.state.vetoDisabled ? "true" : "false"} 
-                              onPress={() => {
-                  this.setState({ selectedVisible : false, vetoVisible : false });
-                  this.props.navigation.navigate("PostChoiceScreen");
-                }}
-                />
-              </View>
+  /**
+   * Render this component.
+   */
+  render() { return (
+
+    <View style={styles.listScreenContainer}>
+
+      { /* ########## Selected Modal ########## */ }
+      <Modal
+        presentationStyle={"formSheet"}
+        visible={this.state.selectedVisible}
+        animationType={"slide"}
+        onRequestClose={ () => { } }
+      >
+        <View style={styles.selectedContainer}>
+          <View style={styles.selectedInnerContainer}>
+            <Text style={styles.selectedName}>{chosenRestaurant.name}</Text>
+            <View style={styles.selectedDetails}>
+              <Text style={styles.selectedDetailsLine}>
+                This is a {"\u2605".repeat(chosenRestaurant.rating)} star
+              </Text>
+              <Text style={styles.selectedDetailsLine}>
+                {chosenRestaurant.cuisine} restaurant
+              </Text>
+              <Text style={styles.selectedDetailsLine}>
+                with a price rating of {"$".repeat(chosenRestaurant.price)}
+              </Text>
+              <Text style={styles.selectedDetailsLine}>
+                that {chosenRestaurant.delivery === "Yes" ? "DOES" : "DOES NOT"} deliver.
+              </Text>
             </View>
-          </Modal>
+            <CustomButton
+              text="Accept"
+              width="94%"
+              onPress={ () => {
+                this.setState({ selectedVisible : false, vetoVisible : false });
+                this.props.navigation.navigate("PostChoiceScreen");
+              } }
+            />
+            <CustomButton
+              text={this.state.vetoText}
+              width="94%"
+              disabled={this.state.vetoDisabled ? "true" : "false"}
+              onPress={ () => {
+                this.setState({ selectedVisible : false, vetoVisible : true });
+              } }
+            />
+          </View>
+        </View>
+      </Modal>
 
-          {/* Veto Modal */}
-
-          <Modal
-            presentationStyle={"formSheet"}
-            visible={this.state.vetoVisible}
-            animationType={"slide"}
-            onRequestClose={ () => { } }
-          >
+      { /* ########## Veto Modal ########## */ }
+      <Modal
+        presentationStyle={"formSheet"}
+        visible={this.state.vetoVisible}
+        animationType={"slide"}
+        onRequestClose={ () => { } }
+      >
         <View style={styles.vetoContainer}>
           <View style={styles.vetoContainerInner}>
             <Text style={styles.vetoHeadline}>Who's vetoing?</Text>
@@ -545,7 +568,7 @@ class ChoiceScreen extends React.Component {
           </View>
         }
       />
-      <CustomButton
+      <CustomButton3
         text="Randomly Choose"
         width="94%"
         onPress={ () => {
@@ -557,9 +580,11 @@ class ChoiceScreen extends React.Component {
           this.setState({ selectedVisible : true });
         } }
       />
-        </View>
-      );
-    }
+
+    </View>
+
+  ); } /* End render(). */
+
 }
 
 
@@ -617,7 +642,7 @@ class PostChoiceScreen extends React.Component {
 
         </View>
         <View style={{ paddingTop:80}}>
-        <Button title="All Done"
+        <CustomButton3 text={res}
           onPress={ () => this.props.navigation.navigate("DecisionTimeScreen") }/>
         </View>
       </View>

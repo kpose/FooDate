@@ -16,7 +16,7 @@ class CustomButton extends Component {
           { padding : 10, height : 60, borderRadius : 8, margin : 10,
             width : width,
             backgroundColor :
-              disabled != null && disabled === "true" ? "#e0e0e0" : "#F35664",
+              disabled != null && disabled === "true" ? "#e0e0e0" : "#EC41BB",
           },
           buttonStyle
         ] }

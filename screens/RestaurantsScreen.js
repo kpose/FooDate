@@ -1,5 +1,6 @@
 import React from "react";
 import CustomButton from "../components/CustomButton";
+import CustomButton3 from "../components/CustomButton3";
 import CustomTextInput from "../components/CustomTextInput";
 import { Alert, AsyncStorage, BackHandler, FlatList, Picker, Platform, ScrollView, StyleSheet, Text, View } from "react-native";
 import { createAppContainer } from 'react-navigation';
@@ -41,7 +42,7 @@ class ListScreen extends React.Component {
       <Root>
         <View style={styles.listScreenContainer}>
           {  }
-          <CustomButton
+          <CustomButton3
             text="Add Restaurant"
             width="94%"
             onPress={ () => { this.props.navigation.navigate("AddScreen"); } }
@@ -290,7 +291,7 @@ class ListScreen extends React.Component {
                 () => { this.props.navigation.navigate("ListScreen"); }
               }
             />
-            <CustomButton
+            <CustomButton3
               text="Save"
               width="44%"
               onPress={ () => {

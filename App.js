@@ -19,7 +19,7 @@ class App extends React.Component {
       <AnimatedSplash
         isLoaded={this.state.isLoaded}
         logoImage={require("./assets/logo.jpg")}
-        backgroundColor={"#9C7952"}
+        backgroundColor={"#F35664"}
         logoHeight={150}
         logoWidth={150}
       >

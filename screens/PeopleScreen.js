@@ -1,4 +1,5 @@
 import React from "react";
+import CustomButton2 from "../components/CustomButton2";
 import CustomButton from "../components/CustomButton";
 import CustomTextInput from "../components/CustomTextInput";
 import {Alert, AsyncStorage, BackHandler, FlatList, Picker, Platform, ScrollView, StyleSheet, Text, View } from "react-native";
@@ -56,7 +57,7 @@ class ListScreen extends React.Component {
       <Root>
         <View style={styles.listScreenContainer}>
           {  }
-          <CustomButton
+          <CustomButton2
             text="Add Person"
             width="94%"
             onPress={ () => { this.props.navigation.navigate("AddScreen"); } }
@@ -190,7 +191,7 @@ class AddScreen extends React.Component {
                   () => { this.props.navigation.navigate("ListScreen"); }
                 }
               />
-              <CustomButton
+              <CustomButton2
                 text="Save"
                 width="44%"
                 onPress={ () => {
