@@ -2,7 +2,7 @@ import React from "react";
 import CustomButton from "../components/CustomButton";
 import CustomButton3 from "../components/CustomButton3";
 import CustomTextInput from "../components/CustomTextInput";
-import { Alert, AsyncStorage, BackHandler, FlatList, Picker, Platform, ScrollView, StyleSheet, Text, View } from "react-native";
+import { Alert, AsyncStorage, BackHandler, FlatList, Picker, Platform, ScrollView, StyleSheet, Text, View, KeyboardAvoidingView } from "react-native";
 import { createAppContainer } from 'react-navigation';
 import { createStackNavigator } from 'react-navigation-stack';
 import { Root, Toast } from "native-base";
@@ -130,7 +130,7 @@ class ListScreen extends React.Component {
   
     } 
     render() { return (
-  
+      
       <ScrollView style={styles.addScreenContainer}>
         <View style={styles.addScreenInnerContainer}>
           <View style={styles.addScreenFormContainer}>
@@ -316,6 +316,7 @@ class ListScreen extends React.Component {
           </View>
         </View>
       </ScrollView>
+      
   
     ); } 
   
@@ -385,7 +386,10 @@ const styles = StyleSheet.create({
     },
   
     fieldLabel : {
-      marginLeft : 10
+      marginLeft : 10,
+      color: "#000000",
+      fontWeight: "bold",
+      fontSize: 15
     },
   
     pickerContainer : {
@@ -394,7 +398,7 @@ const styles = StyleSheet.create({
         android : {
           width : "96%",
           borderRadius : 8,
-          borderColor : "#c0c0c0",
+          borderColor : "#EFA70D",
           borderWidth : 2,
           marginLeft : 10,
           marginBottom : 20,
@@ -407,8 +411,8 @@ const styles = StyleSheet.create({
       ...Platform.select({
         ios : {
           width : "96%",
-          borderRadius : 8,
-          borderColor : "#F3C156",
+          borderRadius : 30,
+          borderColor : "#EFA70D",
           borderWidth : 2,
           marginLeft : 10,
           marginBottom : 20,

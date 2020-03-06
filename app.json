@@ -5,7 +5,6 @@
     "slug": "foodate",
     "privacy": "public",
     "sdkVersion": "36.0.0",
-    
     "userInterfaceStyle": "automatic",
     "ios": {
       "userInterfaceStyle": "light"

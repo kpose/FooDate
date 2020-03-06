@@ -738,7 +738,7 @@ const styles = StyleSheet.create({
         ios : { 
           width: "96%", 
           borderRadius : 8, 
-          borderColor :  "#c0c0c0", 
+          borderColor :  "#EFA70D", 
           borderWidth : 2, 
           marginLeft: 10, 
           marginBottom: 20, 
@@ -875,5 +875,3 @@ const DecisionScreen = createStackNavigator(
   } 
 ); 
 export default createAppContainer(DecisionScreen);
-
-

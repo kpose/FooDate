@@ -7,7 +7,10 @@ import { Platform, StyleSheet, Text, TextInput, View } from "react-native";
 const styles = StyleSheet.create({
 
   fieldLabel : {
-    marginLeft : 10
+    marginLeft : 10,
+    color: "#000000",
+    fontWeight: "bold",
+    fontSize: 15
   },
 
   textInput : {
@@ -15,8 +18,8 @@ const styles = StyleSheet.create({
    
     ...Platform.select({
       ios : {
-        marginTop : 4, paddingLeft : 10, borderRadius : 8,
-        borderColor : "#EC41BB", borderWidth : 1
+        marginTop : 4, paddingLeft : 10, borderRadius : 20,
+        borderColor : "#EC41BB", borderWidth : 2
       },
       android : { }
     })
@@ -28,8 +31,6 @@ const styles = StyleSheet.create({
 
 class CustomTextInput extends Component {
 
-
-  
   render() {
 
     const {
@@ -41,6 +42,8 @@ class CustomTextInput extends Component {
         <Text style={ [ styles.fieldLabel, labelStyle ] }>{label}</Text>
         <TextInput
           maxLength={ maxLength }
+          color= "black"
+          autoCorrect = "false"
           onChangeText={ (inText) => stateHolder.setState(
             () => {
               const obj = { };

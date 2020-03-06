@@ -299,7 +299,10 @@ const styles = StyleSheet.create({
     },
   
     fieldLabel : {
-      marginLeft : 10
+      marginLeft : 10,
+      color: "#000000",
+      fontWeight: "bold",
+      fontSize: 15
     },
   
     pickerContainer : {
@@ -307,7 +310,7 @@ const styles = StyleSheet.create({
         ios : { },
         android : {
           borderRadius : 8,
-          borderColor : "#c0c0c0",
+          borderColor : "#EFA70D",
           borderWidth : 2,
           width : "96%",
           marginLeft : 10,
@@ -321,8 +324,8 @@ const styles = StyleSheet.create({
       ...Platform.select({
         ios : {
           width : "96%",
-          borderRadius : 8,
-          borderColor : "#F3C156",
+          borderRadius : 30,
+          borderColor : "#EFA70D",
           borderWidth : 2,
           marginLeft : 10,
           marginBottom : 20,

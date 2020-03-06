@@ -7,7 +7,3 @@ import BottomTabNavigator from './BottomTabNavigator';
         Main: BottomTabNavigator
     })
 ); 
-
-
-
-
