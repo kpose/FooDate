@@ -5,7 +5,7 @@ import CustomTextInput from "../components/CustomTextInput";
 import {Alert, AsyncStorage, BackHandler, FlatList, Picker, Platform, ScrollView, StyleSheet, Text, View } from "react-native";
 import { createAppContainer } from 'react-navigation';
 import { createStackNavigator } from 'react-navigation-stack';
-import { Root, Toast } from "native-base";
+import { Root, Toast, Left } from "native-base";
 import Constants from 'expo-constants';
 
   
@@ -235,7 +235,7 @@ const PeopleScreen = createStackNavigator(
       AddScreen : { screen : AddScreen }
     }, 
     {
-      headerMode : "none",
+      //headerMode : "none",
       initialRouteName : "ListScreen"
     } 
   
@@ -256,7 +256,8 @@ const styles = StyleSheet.create({
      
       ...Platform.select({
         ios : {
-          paddingTop : Constants.statusBarHeight
+          
+          
         },
         android : { marginTop: 20 }
       })
@@ -280,7 +281,7 @@ const styles = StyleSheet.create({
     },
   
     addScreenContainer : {
-      marginTop : Constants.statusBarHeight
+      marginTop : 2
     },
   
     addScreenInnerContainer : {
