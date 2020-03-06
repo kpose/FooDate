@@ -36,8 +36,8 @@ const BottomTabNavigator = createBottomTabNavigator(
       },
     }),
     tabBarOptions: {
-      activeTintColor: 'tomato',
-      inactiveTintColor: '#9C7952',
+      activeTintColor: "#F35664",
+      inactiveTintColor: "#000000",
       initialRouteName: "Decision"
       
     },

@@ -236,7 +236,11 @@ const PeopleScreen = createStackNavigator(
     }, 
     {
       //headerMode : "none",
-      initialRouteName : "ListScreen"
+      initialRouteName : "ListScreen",
+      mode: "modal",
+      headerMode: "float",
+      
+      
     } 
   
   ); 
