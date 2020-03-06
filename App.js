@@ -1,8 +1,17 @@
 import React from 'react';
 import AnimatedSplash from "react-native-animated-splash-screen";
+import { View } from "react-native";
+//import { useColorScheme } from 'react-native-appearance';
+
+
 
 import AppNavigator from './navigation/AppNavigator';
 //import BottomTabNavigator from './navigation/BottomTabNavigator'
+
+
+
+
+
 
 class App extends React.Component {
   state = {
@@ -10,12 +19,13 @@ class App extends React.Component {
   };
 
   componentDidMount() {
-    
     this.setState({ isLoaded: true });
   }
+  
 
   render() {
     return (
+
       <AnimatedSplash
         isLoaded={this.state.isLoaded}
         logoImage={require("./assets/logo.jpg")}
@@ -23,9 +33,8 @@ class App extends React.Component {
         logoHeight={150}
         logoWidth={150}
       >
-
+       
         <AppNavigator />
-        
       </AnimatedSplash>
     );
   }

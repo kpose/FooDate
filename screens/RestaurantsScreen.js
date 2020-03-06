@@ -53,7 +53,7 @@ class ListScreen extends React.Component {
             data={this.state.listData}
             renderItem={ ({item}) =>
               <View style={styles.restaurantContainer}>
-                <Text style={styles.restaurantName}>{item.name}</Text>
+                <Text style={styles.restaurantName}>Name: {item.name}</Text>
                 <CustomButton
                   text="Delete"
                   onPress={ () => {
@@ -366,7 +366,7 @@ const styles = StyleSheet.create({
     },
   
     restaurantName : {
-      flex : 1
+      flex : 1,
     },
   
     addScreenContainer : {
@@ -408,7 +408,7 @@ const styles = StyleSheet.create({
         ios : {
           width : "96%",
           borderRadius : 8,
-          borderColor : "#c0c0c0",
+          borderColor : "#F3C156",
           borderWidth : 2,
           marginLeft : 10,
           marginBottom : 20,

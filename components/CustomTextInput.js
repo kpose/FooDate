@@ -16,7 +16,7 @@ const styles = StyleSheet.create({
     ...Platform.select({
       ios : {
         marginTop : 4, paddingLeft : 10, borderRadius : 8,
-        borderColor : "#c0c0c0", borderWidth : 2
+        borderColor : "#EC41BB", borderWidth : 1
       },
       android : { }
     })

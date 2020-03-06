@@ -24,6 +24,13 @@ class ListScreen extends React.Component {
 
     componentDidMount() {
       this._isMounted = true;
+      const passedData = this.props.navigation.getParam('passed');
+      this.setState({
+        passedData
+      });
+
+
+      
 
       // Block hardware back button on Android.
       BackHandler.addEventListener(
@@ -205,7 +212,7 @@ class AddScreen extends React.Component {
                       inPeople.push(this.state);
                       AsyncStorage.setItem("people",
                         JSON.stringify(inPeople), function() {
-                          this.props.navigation.navigate("ListScreen");
+                          this.props.navigation.navigate("ListScreen", {passed: this.state});
                         }.bind(this)
                       );
                     }.bind(this)
@@ -315,7 +322,7 @@ const styles = StyleSheet.create({
         ios : {
           width : "96%",
           borderRadius : 8,
-          borderColor : "#c0c0c0",
+          borderColor : "#F3C156",
           borderWidth : 2,
           marginLeft : 10,
           marginBottom : 20,
