@@ -230,14 +230,10 @@ class AddScreen extends React.Component {
   } 
   
 const PeopleScreen = createStackNavigator(
-  
-    
     {
       ListScreen : { screen : ListScreen },
       AddScreen : { screen : AddScreen }
     }, 
-  
-   
     {
       headerMode : "none",
       initialRouteName : "ListScreen"
