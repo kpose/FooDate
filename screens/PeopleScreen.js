@@ -7,22 +7,35 @@ import { createAppContainer } from 'react-navigation';
 import { createStackNavigator } from 'react-navigation-stack';
 import { Root, Toast, Left } from "native-base";
 import Constants from 'expo-constants';
-import { NavigationEvents } from 'react-navigation';
+
 
   
 class ListScreen extends React.Component {
   _isMounted = false;
+
     constructor(inProps) {
-  
       super(inProps);
-  
       this.state = {
         listData : [ ]
-      };
-  
+      };  
     }
 
     componentDidMount() {
+      this.reRenderPeople = this.props.navigation.addListener('willFocus', () => {
+        AsyncStorage.getItem("people",
+        function(inError, inPeople) {
+          if (inPeople === null) {
+            inPeople = [ ];
+          } else {
+            inPeople = JSON.parse(inPeople);
+          }
+          if (this._isMounted) {
+            this.setState({ listData : inPeople});
+          }
+        }.bind(this)
+      ); 
+      });
+
       this._isMounted = true;
       // Block hardware back button on Android.
       BackHandler.addEventListener(
@@ -38,7 +51,7 @@ class ListScreen extends React.Component {
             inPeople = JSON.parse(inPeople);
           }
           if (this._isMounted) {
-            this.setState({ listData : inPeople });
+            this.setState({ listData : inPeople});
           }
         }.bind(this)
       );
@@ -46,6 +59,7 @@ class ListScreen extends React.Component {
 
     componentWillUnmount() {
       this._isMounted = false;
+      this.reRenderPeople;
     }
 
  
@@ -54,10 +68,6 @@ class ListScreen extends React.Component {
       <Root>
         <View style={styles.listScreenContainer}>
           {  }
-          <NavigationEvents
-                onDidFocus={() => this.forceUpdate()}
-                />
-
           <CustomButton2
             text="Add Person"
             width="94%"

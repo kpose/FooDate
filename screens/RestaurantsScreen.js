@@ -12,17 +12,30 @@ class ListScreen extends React.Component {
   _isMounted = false;
 
     constructor(inProps) {
-  
       super(inProps);
-  
       this.state = {
         listData : [ ]
       };
-  
     } 
 
     componentDidMount() {
+      this.reRenderRestaurants = this.props.navigation.addListener('willFocus', () => {
+        AsyncStorage.getItem("restaurants",
+        function(inError, inRestaurants) {
+          if (inRestaurants === null) {
+            inRestaurants = [ ];
+          } else {
+            inRestaurants = JSON.parse(inRestaurants);
+          }
+          if (this._isMounted) {
+            this.setState({ listData : inRestaurants});
+          }
+        }.bind(this)
+      );
+      });
+
       this._isMounted = true;
+
       BackHandler.addEventListener(
         "hardwareBackPress", () => { return true; }
       );
@@ -43,6 +56,7 @@ class ListScreen extends React.Component {
     
     componentWillUnmount() {
       this._isMounted = false;
+      this.reRenderRestaurants;
     }
 
     
