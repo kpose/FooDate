@@ -66,7 +66,7 @@ class ListScreen extends React.Component {
         <View style={styles.listScreenContainer}>
           {  }
           <CustomButton3
-            text="Add Restaurant"
+            text="Add New Restaurant"
             width="94%"
             onPress={ () => { this.props.navigation.navigate("AddScreen"); } }
           />
@@ -346,16 +346,27 @@ class ListScreen extends React.Component {
   } 
 
 
-const RestaurantsScreen = createStackNavigator(
-    {
-      ListScreen : { screen : ListScreen },
-      AddScreen : { screen : AddScreen }
-    }, 
-    {
-      headerMode : "none",
-      initialRouteName : "ListScreen"
-    } 
-  
+const RestaurantsScreen = createStackNavigator({
+      ListScreen : { screen : ListScreen, 
+        navigationOptions: {
+          headerTitle: 'Restaurant List',
+          headerStyle: { backgroundColor: 'rgb(226, 81,65)', borderBottomColor: 'white' },
+          headerTitleStyle: { color: 'yellow' },
+        } 
+      },
+
+      AddScreen : { screen : AddScreen, 
+        navigationOptions: () => ({
+          headerTitle: 'Add Restaurant',
+          headerStyle: { backgroundColor: 'rgb(226, 81,65)', borderBottomColor: 'white' },
+          headerTitleStyle: { color: 'yellow' }, 
+          headerTintColor: 'white',
+          headerBackTitle: 'Back' 
+        }) 
+       },   
+         
+    },
+        
   );
   
  
@@ -370,7 +381,8 @@ const styles = StyleSheet.create({
       
       ...Platform.select({
         ios : {
-          paddingTop : Constants.statusBarHeight
+          
+          
         },
         android : { marginTop: 20 }
       })
@@ -394,7 +406,7 @@ const styles = StyleSheet.create({
     },
   
     addScreenContainer : {
-      marginTop : Constants.statusBarHeight
+      marginTop : 2
     },
   
     addScreenInnerContainer : {

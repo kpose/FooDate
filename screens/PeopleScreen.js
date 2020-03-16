@@ -69,7 +69,7 @@ class ListScreen extends React.Component {
         <View style={styles.listScreenContainer}>
           {  }
           <CustomButton2
-            text="Add Person"
+            text="Add New Friend"
             width="94%"
             onPress={ () => { this.props.navigation.navigate("AddScreen"); } }
           />
@@ -239,16 +239,30 @@ class AddScreen extends React.Component {
   
 const PeopleScreen = createStackNavigator(
     {
-      ListScreen : { screen : ListScreen },
-      AddScreen : { screen : AddScreen }
+      ListScreen : { screen : ListScreen, 
+        navigationOptions: {
+          headerTitle: 'People List',
+          headerStyle: { backgroundColor: 'rgb(226, 81,65)', borderBottomColor: 'white' },
+          headerTitleStyle: { color: 'yellow' },
+          headerMode:'float'
+        }  },
+
+
+      AddScreen : { screen : AddScreen, 
+        navigationOptions: () => ({
+          headerTitle: 'Add Person',
+          headerStyle: { backgroundColor: 'rgb(226, 81,65)', borderBottomColor: 'white' },
+          headerTitleStyle: { color: 'yellow' }, 
+          headerTintColor: 'white',
+          headerBackTitle: 'Back' 
+        })
+       }
     }, 
+    
     {
       //headerMode : "none",
       initialRouteName : "ListScreen",
-      mode: "modal",
-      headerMode: "float",
-      
-      
+      mode: "modal"
     } 
   
   ); 

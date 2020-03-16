@@ -402,11 +402,7 @@ class PreFiltersScreen extends React.Component {
 {/* Choice Screen */}
 
 class ChoiceScreen extends React.Component {
-
-
-  /**
-   * Constructor.
-   */
+  
   constructor(inProps) {
 
     super(inProps);
@@ -420,12 +416,8 @@ class ChoiceScreen extends React.Component {
         vetoText : "Veto"
       };
 
-  } /* End constructor. */
-
-
-  /**
-   * Render this component.
-   */
+  } 
+  
   render() { return (
 
     <View style={styles.listScreenContainer}>
@@ -667,15 +659,15 @@ const styles = StyleSheet.create({
       alignItems: "center",
       justifyContent: "center",
       ...Platform.select({ios : {
-        paddingTop : Constants.statusBarHeight
+        marginTop : 2
       }, android : { }
     })
     },
 
     whoIsGoingHeadline: {
       fontSize: 30,
-      marginTop : 20, 
-      marginBottom: 20
+      marginTop : 10, 
+      marginBottom: 10
     },
 
     fieldLabel : {
@@ -700,7 +692,7 @@ const styles = StyleSheet.create({
     },
 
     preFiltersContainer:{
-      marginTop: Constants.statusBarHeight
+      marginTop : 2
     },
 
     preFiltersInnerContainer: {
@@ -722,8 +714,8 @@ const styles = StyleSheet.create({
 
     preFiltersHeadline: {
       fontSize: 30, 
-      marginTop: 20,
-      marginBottom: 20
+      marginTop: 10,
+      marginBottom: 10
     },
 
     pickerContainer: {
@@ -813,21 +805,27 @@ const styles = StyleSheet.create({
         paddingTop : 40 
       },
 
-      choiceScreenListContainer : { 
-        width : "94%" 
+      choiceScreenHeadline : {
+        fontSize : 30,
+        marginTop : 20,
+        marginBottom : 20
       },
-
-      choiceScreenListItem : { 
+    
+      choiceScreenListContainer : {
+        width : "94%"
+      },
+    
+      choiceScreenListItem : {
         flexDirection : "row",
-        marginTop : 4, 
+        marginTop : 4,
         marginBottom : 4,
-        borderColor : "#e0e0e0", 
-        borderBottomWidth : 2, 
-        alignItems : "center" 
+        borderColor : "#e0e0e0",
+        borderBottomWidth : 2,
+        alignItems : "center"
       },
-
-      choiceScreenListItemName : { 
-        flex : 1 
+    
+      choiceScreenListItemName : {
+        flex : 1
       },
 
       postChoiceScreenContainer : { 
@@ -871,14 +869,47 @@ const styles = StyleSheet.create({
 
 const DecisionScreen = createStackNavigator(
   {
-    DecisionTimeScreen : { screen : DecisionTimeScreen },
-    WhoIsGoingScreen : { screen : WhoIsGoingScreen },
-    PreFiltersScreen : { screen : PreFiltersScreen },
-    ChoiceScreen : { screen : ChoiceScreen},
-    PostChoiceScreen : { screen : PostChoiceScreen }
+    DecisionTimeScreen : { screen : DecisionTimeScreen,
+      navigationOptions: () => ({
+        headerShown: false,
+      }) },
+
+    WhoIsGoingScreen : { screen : WhoIsGoingScreen, 
+      navigationOptions: {
+        headerTitle: 'Who Is Going?',
+        headerStyle: { backgroundColor: 'rgb(226, 81,65)', borderBottomColor: 'white' },
+        headerTitleStyle: { color: 'yellow' },
+        
+      }
+     },
+
+
+
+    PreFiltersScreen : { screen : PreFiltersScreen, 
+      navigationOptions: () => ({
+        headerTitle: 'Filter Restaurants',
+        headerStyle: { backgroundColor: 'rgb(226, 81,65)', borderBottomColor: 'white' },
+        headerTitleStyle: { color: 'yellow' }, 
+        headerTintColor: 'white',
+        headerBackTitle: 'Back' 
+      }) },
+
+
+    ChoiceScreen : { screen : ChoiceScreen, 
+        navigationOptions: () => ({
+          headerTitle: 'Choices',
+          headerStyle: { backgroundColor: 'rgb(226, 81,65)', borderBottomColor: 'white' },
+          headerTitleStyle: { color: 'yellow' }, 
+          headerTintColor: 'white',
+          headerBackTitle: 'Back' 
+        })},
+
+
+    PostChoiceScreen : { screen : PostChoiceScreen,
+      navigationOptions: () => ({
+        headerShown: false,
+      }) }
   }, 
-  {
-    headerMode : "none"
-  } 
+  
 ); 
 export default createAppContainer(DecisionScreen);
