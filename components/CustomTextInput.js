@@ -43,7 +43,6 @@ class CustomTextInput extends Component {
         <TextInput
           maxLength={ maxLength }
           color= "black"
-          autoCorrect = "false"
           onChangeText={ (inText) => stateHolder.setState(
             () => {
               const obj = { };

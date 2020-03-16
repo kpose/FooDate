@@ -92,7 +92,7 @@ class WhoIsGoingScreen extends React.Component {
       people : [ ], 
       selected : { } 
     };
-  }
+  }  
 
   componentDidMount() {
     BackHandler.addEventListener("hardwareBackPress", () => { return true; });
@@ -192,7 +192,7 @@ class PreFiltersScreen extends React.Component {
           <View style = {styles.preFiltersScreenFormContainer}>
 
             <View style ={styles.preFiltersHeadlineContainer}>
-              <Text style={styles.preFiltersHeadline}>Pre-Filters</Text>
+              <Text style={styles.preFiltersHeadline}>Filter Restaurants</Text>
             </View>
 
           {/* CUISINE FILTER */}
@@ -320,7 +320,7 @@ class PreFiltersScreen extends React.Component {
           </View>
 
          
-          <CustomButton2
+          <CustomButton3
             text="Next"
             width="94%"
             onPress={ () => {
@@ -484,60 +484,60 @@ class ChoiceScreen extends React.Component {
         <View style={styles.vetoContainer}>
           <View style={styles.vetoContainerInner}>
             <Text style={styles.vetoHeadline}>Who's vetoing?</Text>
-            <ScrollView style={styles.vetoScrollViewContainer}>
-              { participants.map((inValue) => {
-                  if (inValue.vetoed === "no") {
-                    return <TouchableOpacity key={inValue.key}
-                      style={ styles.vetoParticipantContainer }
-                      onPress={ () => {
-                        // Mark the vetoer as having vetoed.
-                        for (const participant of participants) {
-                          if (participant.key === inValue.key) {
-                            participant.vetoed = "yes";
-                            break;
-                          }
-                        }
-                        // Make sure there's still at least one person that
-                        // can veto, otherwise disable the Veto button.
-                        let vetoStillAvailable = false;
-                        let buttonLabel = "No Vetoes Left";
-                        for (const participant of participants) {
-                          if (participant.vetoed === "no") {
-                            vetoStillAvailable = true;
-                            buttonLabel = "Veto";
-                            break;
-                          }
-                        }
-                        // Delete the vetoed restaurant.
-                        for (let i = 0; i < filteredRestaurants.length; i++) {
-                          if (filteredRestaurants[i].key === chosenRestaurant.key) {
-                            filteredRestaurants.splice(i, 1);
-                            break;
-                          }
-                        }
-                        // Update state.
-                        this.setState({
-                          selectedVisible : false,
-                          vetoVisible : false,
-                          vetoText : buttonLabel,
-                          vetoDisabled : !vetoStillAvailable,
-                          participantsListRefresh : !this.state.participantsListRefresh
-                        });
-                        // If there's only one restaurant left then
-                        // that's the choice.
-                        if (filteredRestaurants.length === 1) {
-                          this.props.navigation.navigate("PostChoiceScreen");
-                        }
-                      } }
-                    >
-                      <Text style={styles.vetoParticipantName}>
-                        {inValue.firstName + " " + inValue.lastName}
-                      </Text>
-                    </TouchableOpacity>;
-                  }
-                })
+        <ScrollView style={styles.vetoScrollViewContainer}>
+          { participants.map((inValue) => {
+              if (inValue.vetoed === "no") {
+                return <TouchableOpacity key={inValue.key}
+                  style={ styles.vetoParticipantContainer }
+                  onPress={ () => {
+                    // Mark the vetoer as having vetoed.
+                    for (const participant of participants) {
+                      if (participant.key === inValue.key) {
+                        participant.vetoed = "yes";
+                        break;
+                      }
+                    }
+                    // Make sure there's still at least one person that
+                    // can veto, otherwise disable the Veto button.
+                    let vetoStillAvailable = false;
+                    let buttonLabel = "No Vetoes Left";
+                    for (const participant of participants) {
+                      if (participant.vetoed === "no") {
+                        vetoStillAvailable = true;
+                        buttonLabel = "Veto";
+                        break;
+                      }
+                    }
+                    // Delete the vetoed restaurant.
+                    for (let i = 0; i < filteredRestaurants.length; i++) {
+                      if (filteredRestaurants[i].key === chosenRestaurant.key) {
+                        filteredRestaurants.splice(i, 1);
+                        break;
+                      }
+                    }
+                    // Update state.
+                    this.setState({
+                      selectedVisible : false,
+                      vetoVisible : false,
+                      vetoText : buttonLabel,
+                      vetoDisabled : !vetoStillAvailable,
+                      participantsListRefresh : !this.state.participantsListRefresh
+                    });
+                    // If there's only one restaurant left then
+                    // that's the choice.
+                    if (filteredRestaurants.length === 1) {
+                      this.props.navigation.navigate("PostChoiceScreen");
+                    }
+                  } }
+                >
+                  <Text style={styles.vetoParticipantName}>
+                    {inValue.firstName + " " + inValue.lastName}
+                  </Text>
+                </TouchableOpacity>;
               }
-            </ScrollView>
+            })
+          }
+        </ScrollView>
             <View style={styles.vetoButtonContainer}>
               <CustomButton
                 text="Never Mind"
@@ -554,7 +554,7 @@ class ChoiceScreen extends React.Component {
       </Modal>
 
       { /* ########## Main choice screen. ########## */ }
-      <Text style={styles.choiceScreenHeadline}>Choice Screen</Text>
+      <Text style={styles.choiceScreenHeadline}>Your Choice</Text>
       <FlatList
         style={styles.choiceScreenListContainer}
         data={this.state.participantsList}
@@ -642,7 +642,7 @@ class PostChoiceScreen extends React.Component {
 
         </View>
         <View style={{ paddingTop:80}}>
-        <CustomButton3 text={res}
+        <CustomButton text={res}
           onPress={ () => this.props.navigation.navigate("DecisionTimeScreen") }/>
         </View>
       </View>
@@ -655,7 +655,7 @@ const styles = StyleSheet.create({
         flex: 1,
         alignItems: "center",
         justifyContent: "center",
-    },
+      },
 
     decisionTimeScreenTouchable: {
         alignItems: "center",
@@ -676,6 +676,13 @@ const styles = StyleSheet.create({
       fontSize: 30,
       marginTop : 20, 
       marginBottom: 20
+    },
+
+    fieldLabel : {
+      marginLeft : 10,
+      color: "#000000",
+      fontWeight: "bold",
+      fontSize: 15
     },
 
     whoIsGoingItemTouchable:{
@@ -737,7 +744,7 @@ const styles = StyleSheet.create({
       ...Platform.select({
         ios : { 
           width: "96%", 
-          borderRadius : 8, 
+          borderRadius : 30, 
           borderColor :  "#EFA70D", 
           borderWidth : 2, 
           marginLeft: 10, 

@@ -9,6 +9,7 @@ import { Root, Toast } from "native-base";
 import Constants from 'expo-constants';
 
 class ListScreen extends React.Component {
+  _isMounted = false;
 
     constructor(inProps) {
   
@@ -21,6 +22,7 @@ class ListScreen extends React.Component {
     } 
 
     componentDidMount() {
+      this._isMounted = true;
       BackHandler.addEventListener(
         "hardwareBackPress", () => { return true; }
       );
@@ -32,11 +34,18 @@ class ListScreen extends React.Component {
           } else {
             inRestaurants = JSON.parse(inRestaurants);
           }
-          this.setState({ listData : inRestaurants });
+          if (this._isMounted) {
+            this.setState({ listData : inRestaurants});
+          }
         }.bind(this)
       );
-  
-    };  
+    };
+    
+    componentWillUnmount() {
+      this._isMounted = false;
+    }
+
+    
     render() { return (
   
       <Root>

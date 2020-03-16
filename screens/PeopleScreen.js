@@ -7,11 +7,11 @@ import { createAppContainer } from 'react-navigation';
 import { createStackNavigator } from 'react-navigation-stack';
 import { Root, Toast, Left } from "native-base";
 import Constants from 'expo-constants';
+import { NavigationEvents } from 'react-navigation';
 
   
 class ListScreen extends React.Component {
   _isMounted = false;
-
     constructor(inProps) {
   
       super(inProps);
@@ -24,21 +24,11 @@ class ListScreen extends React.Component {
 
     componentDidMount() {
       this._isMounted = true;
-      const passedData = this.props.navigation.getParam('passed');
-      this.setState({
-        passedData
-      });
-
-
-      
-
       // Block hardware back button on Android.
       BackHandler.addEventListener(
         "hardwareBackPress", () => { return true; }
       );
-
-     
-  
+        
       // Get list of people.
       AsyncStorage.getItem("people",
         function(inError, inPeople) {
@@ -52,18 +42,22 @@ class ListScreen extends React.Component {
           }
         }.bind(this)
       );
-  
     };
 
     componentWillUnmount() {
       this._isMounted = false;
     }
+
  
     render() { return (
   
       <Root>
         <View style={styles.listScreenContainer}>
           {  }
+          <NavigationEvents
+                onDidFocus={() => this.forceUpdate()}
+                />
+
           <CustomButton2
             text="Add Person"
             width="94%"
@@ -132,9 +126,12 @@ class ListScreen extends React.Component {
         </View>
       </Root>
   
-    ); }  
-    
+    ); } 
+
   }
+
+
+
 
 class AddScreen extends React.Component {
     constructor(inProps) {
@@ -149,6 +146,7 @@ class AddScreen extends React.Component {
       };
   
     } 
+
     render() { return (
   
       <Root>
@@ -195,9 +193,9 @@ class AddScreen extends React.Component {
                 text="Cancel"
                 width="44%"
                 onPress={
-                  () => { this.props.navigation.navigate("ListScreen"); }
-                }
-              />
+                () => { this.props.navigation.navigate("ListScreen"); }
+              }
+            />
               <CustomButton2
                 text="Save"
                 width="44%"
@@ -212,7 +210,7 @@ class AddScreen extends React.Component {
                       inPeople.push(this.state);
                       AsyncStorage.setItem("people",
                         JSON.stringify(inPeople), function() {
-                          this.props.navigation.navigate("ListScreen", {passed: this.state});
+                          this.props.navigation.navigate("ListScreen");
                         }.bind(this)
                       );
                     }.bind(this)
@@ -342,4 +340,3 @@ const styles = StyleSheet.create({
     }
   
   });
-  
