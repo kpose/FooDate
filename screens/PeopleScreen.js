@@ -80,7 +80,7 @@ class ListScreen extends React.Component {
             renderItem={ ({item}) =>
               <View style={styles.personContainer}>
                 <Text style={styles.personName}>
-                  {item.firstName} {item.lastName} ({item.relationship})
+                  {item.firstName} {item.lastName} -- ({item.relationship})
                 </Text>
                 <CustomButton
                   text="Delete"
@@ -169,6 +169,7 @@ class AddScreen extends React.Component {
                 maxLength={20}
                 stateHolder={this}
                 stateFieldName="firstName"
+                keyboardType = "default"
               />
               { }
               <CustomTextInput
@@ -176,6 +177,7 @@ class AddScreen extends React.Component {
                 maxLength={20}
                 stateHolder={this}
                 stateFieldName="lastName"
+                keyboardType = "default"
               />
               {  }
               <Text style={styles.fieldLabel}>Relationship</Text>
@@ -303,7 +305,12 @@ const styles = StyleSheet.create({
     },
   
     personName : {
-      flex : 1
+      flex : 1,
+      color: "#0C0B0B",
+      fontSize: 17,
+      fontWeight: 'bold',
+      textShadowColor: '#EFA70D',
+      textShadowRadius: 50
     },
   
     addScreenContainer : {

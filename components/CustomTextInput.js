@@ -34,7 +34,7 @@ class CustomTextInput extends Component {
   render() {
 
     const {
-      label, labelStyle, maxLength, textInputStyle, stateHolder, stateFieldName
+      label, labelStyle, maxLength, textInputStyle, stateHolder, stateFieldName, keyboardType
     } = this.props;
 
     return (
@@ -43,6 +43,8 @@ class CustomTextInput extends Component {
         <TextInput
           maxLength={ maxLength }
           color= "black"
+          autoCompleteType = "off"
+          keyboardType = {this.props.keyboardType}
           onChangeText={ (inText) => stateHolder.setState(
             () => {
               const obj = { };
@@ -65,7 +67,8 @@ CustomTextInput.propTypes = {
   maxLength : PropTypes.number,
   textInputStyle : PropTypes.object,
   stateHolder : PropTypes.object.isRequired,
-  stateFieldName : PropTypes.string.isRequired
+  stateFieldName : PropTypes.string.isRequired,
+  keyboardType : PropTypes.string
 
 };
 

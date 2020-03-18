@@ -163,6 +163,7 @@ class ListScreen extends React.Component {
               maxLength={20}
               stateHolder={this}
               stateFieldName="name"
+              keyboardType = "default"
             />
             { /* ########## Cuisine ########## */ }
             <Text style={styles.fieldLabel}>Cuisine</Text>
@@ -273,6 +274,7 @@ class ListScreen extends React.Component {
               maxLength={20}
               stateHolder={this}
               stateFieldName="phone"
+              keyboardType = "phone-pad"
             />
             { /* ########## Address ########## */ }
             <CustomTextInput
@@ -280,6 +282,7 @@ class ListScreen extends React.Component {
               maxLength={20}
               stateHolder={this}
               stateFieldName="address"
+              keyboardType = "default"
             />
             { /* ########## Web Site ########## */ }
             <CustomTextInput
@@ -287,6 +290,7 @@ class ListScreen extends React.Component {
               maxLength={20}
               stateHolder={this}
               stateFieldName="webSite"
+              keyboardType = "default"
             />
             { /* ########## Delivery ########## */ }
             <Text style={styles.fieldLabel}>Delivery?</Text>
