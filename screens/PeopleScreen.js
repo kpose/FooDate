@@ -307,11 +307,11 @@ const styles = StyleSheet.create({
     personName : {
       flex : 1,
       color: "#0C0B0B",
-      fontSize: 17,
       fontWeight: 'bold',
       textShadowColor: '#EFA70D',
-      textShadowRadius: 50
+      textShadowRadius: 30
     },
+
   
     addScreenContainer : {
       marginTop : 2

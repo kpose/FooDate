@@ -209,7 +209,6 @@ class ListScreen extends React.Component {
               <Picker.Item label="Mexican" value="Mexican" />
               <Picker.Item label="Mormon" value="Mormon" />
               <Picker.Item label="Nigerian" value="Nigerian" />
-              <Picker.Item label="Other" value="Other" />
               <Picker.Item label="Peruvian" value="Peruvian" />
               <Picker.Item label="Polish" value="Polish" />
               <Picker.Item label="Portuguese" value="Portuguese" />
@@ -407,6 +406,7 @@ const styles = StyleSheet.create({
   
     restaurantName : {
       flex : 1,
+      fontWeight: 'bold'
     },
   
     addScreenContainer : {

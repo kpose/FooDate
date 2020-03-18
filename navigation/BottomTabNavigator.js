@@ -38,8 +38,10 @@ const BottomTabNavigator = createBottomTabNavigator(
     tabBarOptions: {
       activeTintColor: "#F35664",
       inactiveTintColor: "#000000",
-      initialRouteName: "Decision"
-      
+      labelStyle: {
+        fontSize: 10,
+        fontWeight:'bold',
+      },     
     },
   }
 );
