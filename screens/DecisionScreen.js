@@ -57,9 +57,9 @@ class DecisionTimeScreen extends React.Component {
                     }
                     if (inRestaurants.length === 0) {
                       Alert.alert(
-                        "Hey, calm down",
+                        "Hey,",
                         "You haven't added any restaurants. " +
-                        "You should probably do that first, no?",
+                        "Please, do that",
                         [ { text : "OK" } ],
                         { cancelable : false }
                       );
@@ -453,7 +453,7 @@ class ChoiceScreen extends React.Component {
                 this.props.navigation.navigate("PostChoiceScreen");
               } }
             />
-            <CustomButton
+            <CustomButton2
               text={this.state.vetoText}
               width="94%"
               disabled={this.state.vetoDisabled ? "true" : "false"}

@@ -19,9 +19,12 @@ const styles = StyleSheet.create({
     ...Platform.select({
       ios : {
         marginTop : 4, paddingLeft : 10, borderRadius : 20,
-        borderColor : "#EC41BB", borderWidth : 2
+        borderColor : "#EC41BB", borderWidth : 2, color: "#000000"
       },
-      android : { }
+      android : { 
+        marginTop : 4, paddingLeft : 10, borderRadius : 20,
+        borderColor : "#EC41BB", borderWidth : 2
+      }
     })
   }
 
@@ -34,7 +37,7 @@ class CustomTextInput extends Component {
   render() {
 
     const {
-      label, labelStyle, maxLength, textInputStyle, stateHolder, stateFieldName, keyboardType
+      label, labelStyle, maxLength, textInputStyle, stateHolder, stateFieldName
     } = this.props;
 
     return (
@@ -42,7 +45,7 @@ class CustomTextInput extends Component {
         <Text style={ [ styles.fieldLabel, labelStyle ] }>{label}</Text>
         <TextInput
           maxLength={ maxLength }
-          color= "black"
+          
           autoCompleteType = "off"
           keyboardType = {this.props.keyboardType}
           onChangeText={ (inText) => stateHolder.setState(
@@ -69,7 +72,6 @@ CustomTextInput.propTypes = {
   stateHolder : PropTypes.object.isRequired,
   stateFieldName : PropTypes.string.isRequired,
   keyboardType : PropTypes.string
-
 };
 
 
