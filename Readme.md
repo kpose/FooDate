@@ -6,7 +6,7 @@ This app is made to be simple and may help people knowing React & Redux to get i
 
 ## Preview
 
-![addscreen](https://user-images.githubusercontent.com/25622362/77067939-070e6580-69e6-11ea-8f7c-4c02445a8a45.PNG)
+![addscreen](https://user-images.githubusercontent.com/25622362/77068211-7dab6300-69e6-11ea-9fa9-1a07e1bfddd7.PNG)
 
 > Note: 6MB size GIF, might take some time to load
 
