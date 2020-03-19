@@ -6,13 +6,7 @@ This app is made to be simple and may help people knowing React & Redux to get i
 
 ## Screenshots
 
-![addscreen](https://user-images.githubusercontent.com/25622362/77068211-7dab6300-69e6-11ea-9fa9-1a07e1bfddd7.PNG)   
-
-![done](https://user-images.githubusercontent.com/25622362/77068410-dd097300-69e6-11ea-85dc-25cdf32bdc3f.PNG) 
-
-![veto](https://user-images.githubusercontent.com/25622362/77068443-e98dcb80-69e6-11ea-81c2-247dd53d488a.PNG)
-
-![whoisgoing](https://user-images.githubusercontent.com/25622362/77068449-edb9e900-69e6-11ea-9c4b-a977d9a89bea.PNG)
+![addscreen](https://user-images.githubusercontent.com/25622362/77068211-7dab6300-69e6-11ea-9fa9-1a07e1bfddd7.PNG) ![done](https://user-images.githubusercontent.com/25622362/77068410-dd097300-69e6-11ea-85dc-25cdf32bdc3f.PNG) ![veto](https://user-images.githubusercontent.com/25622362/77068443-e98dcb80-69e6-11ea-81c2-247dd53d488a.PNG) ![whoisgoing](https://user-images.githubusercontent.com/25622362/77068449-edb9e900-69e6-11ea-9c4b-a977d9a89bea.PNG)
 
 
 
