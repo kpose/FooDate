@@ -6,7 +6,7 @@ This app is made to be simple and may help people knowing React & Redux to get i
 
 ## Preview
 
-![gif preview](images\screenshots\IMG-4401.PNG?raw=true "Optional Title")
+![gif preview](images\screenshots\whoisgoing.png)
 
 > Note: 6MB size GIF, might take some time to load
 
