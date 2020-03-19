@@ -6,7 +6,7 @@ This app is made to be simple and may help people knowing React & Redux to get i
 
 ## Preview
 
-![gif preview](images\screenshots\whoisgoing.png)
+![addscreen](https://user-images.githubusercontent.com/25622362/77067939-070e6580-69e6-11ea-8f7c-4c02445a8a45.PNG)
 
 > Note: 6MB size GIF, might take some time to load
 
