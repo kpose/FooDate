@@ -239,8 +239,7 @@ class PreFiltersScreen extends React.Component {
               <Picker.Item label="Mediterranean" value="Mediterranean" />
               <Picker.Item label="Mexican" value="Mexican" />
               <Picker.Item label="Mormon" value="Mormon" />
-              <Picker.Item label="Nigerian" value="Nigerian" />
-              <Picker.Item label="Other" value="Other" />
+              <Picker.Item label="Nigerian" value="Nigerian" />          
               <Picker.Item label="Peruvian" value="Peruvian" />
               <Picker.Item label="Polish" value="Polish" />
               <Picker.Item label="Portuguese" value="Portuguese" />
