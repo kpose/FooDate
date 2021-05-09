@@ -2308,13 +2308,6 @@ expo-constants@~8.0.0:
   dependencies:
     ua-parser-js "^0.7.19"
 
-expo-dark-mode-switch@0.0.1:
-  version "0.0.1"
-  resolved "https://registry.yarnpkg.com/expo-dark-mode-switch/-/expo-dark-mode-switch-0.0.1.tgz#e129bca6e64e31f0787f445ad11692a4bf673b53"
-  integrity sha512-TlLC5a0ZAUFBL/zZlSWWuCMTPiFP+RC5Uq5oJZlCpoDNi9qiN+hvySe2NXoeN99N4dmvGL99SNnXyI2I96mnuA==
-  dependencies:
-    react-native-web-hooks "^3.0.1"
-
 expo-error-recovery@~1.0.0:
   version "1.0.0"
   resolved "https://registry.yarnpkg.com/expo-error-recovery/-/expo-error-recovery-1.0.0.tgz#2ca9d59fcd16c5c881af877993731056f2d46afe"
@@ -4382,9 +4375,9 @@ query-string@^6.4.2:
     strict-uri-encode "^2.0.0"
 
 querystringify@^2.1.1:
-  version "2.1.1"
-  resolved "https://registry.yarnpkg.com/querystringify/-/querystringify-2.1.1.tgz#60e5a5fd64a7f8bfa4d2ab2ed6fdf4c85bad154e"
-  integrity sha512-w7fLxIRCRT7U8Qu53jQnJyPkYZIaR4n5151KMfcJlO/A9397Wxb1amJvROTK6TOnp7PfoAmg/qXiNHI+08jRfA==
+  version "2.2.0"
+  resolved "https://registry.yarnpkg.com/querystringify/-/querystringify-2.2.0.tgz#3345941b4153cb9d082d8eee4cda2016a9aef7f6"
+  integrity sha512-FIqgj2EUvTa7R50u0rGsyTftzjYmv/a3hO345bZNrqabNqjtgiDMgmo4mkUjd+nzU5oF3dClKqFIPUKybUyqoQ==
 
 raf@^3.1.0:
   version "3.4.1"
@@ -4433,15 +4426,6 @@ react-native-animated-splash-screen@^1.0.6:
   dependencies:
     prop-types "^15.7.2"
 
-react-native-appearance@~0.3.1:
-  version "0.3.3"
-  resolved "https://registry.yarnpkg.com/react-native-appearance/-/react-native-appearance-0.3.3.tgz#7267eccbc7a0bc7ea743eecd85c68aabc37f81d4"
-  integrity sha512-XETmdFGMH1j07mIrri74dG+qUvW/vme7SIZWbFup9Ra5p/eiEkl6kWbQljap4+G+PUIsPjU5OdbUaNz8Zs9DAg==
-  dependencies:
-    fbemitter "^2.1.1"
-    invariant "^2.2.4"
-    use-subscription "^1.0.0"
-
 react-native-drawer@2.5.1:
   version "2.5.1"
   resolved "https://registry.yarnpkg.com/react-native-drawer/-/react-native-drawer-2.5.1.tgz#08b9314184f48c724f1b467f8859797369798654"
@@ -4456,11 +4440,6 @@ react-native-easy-grid@0.2.2:
   integrity sha512-MlYrNIldnEMKn6TVatQN1P64GoVlwGIuz+8ncdfJ0Wq/xtzUkQwlil8Uksyp7MhKfENE09MQnGNcba6Mx3oSAA==
   dependencies:
     lodash "^4.17.15"
-
-react-native-fast-image@^8.1.5:
-  version "8.1.5"
-  resolved "https://registry.yarnpkg.com/react-native-fast-image/-/react-native-fast-image-8.1.5.tgz#0a6404c988dad68c98d26f91155d0a5293ba2ea5"
-  integrity sha512-DoAWGLeQ2hbllummrpXH9B38OgM0TFmNYCF34F90/hdHZirqUtYHzF4QDdb/NV7ebSijHmM3mpkzct8PXtcYyg==
 
 react-native-gesture-handler@~1.5.0:
   version "1.5.6"
@@ -4536,11 +4515,6 @@ react-native-view-shot@3.0.2:
   version "3.0.2"
   resolved "https://registry.yarnpkg.com/react-native-view-shot/-/react-native-view-shot-3.0.2.tgz#daccaec5b8038a680b17533ff7e72876e68c7d0d"
   integrity sha512-JZOkGo2jzSX2b7N6N2uDr0wQjSz+QmBtY8jzeo0XJY6bLOfaY5nmWyYxDmDRoSpKiFkGTCkyhUqNnjo6lXOtEw==
-
-react-native-web-hooks@^3.0.1:
-  version "3.0.1"
-  resolved "https://registry.yarnpkg.com/react-native-web-hooks/-/react-native-web-hooks-3.0.1.tgz#d680c7638a51b573f1a3f756ba59589fcefde06f"
-  integrity sha512-k1GLtdFo7OA6DBVu0ydbLwq7Ds32oz1dJJkeeYRuxqcs5K8PQFIYxRyEpiW36Fcol+NffeziT2ITkbdIXI0etA==
 
 react-native-web@~0.11.7:
   version "0.11.7"
@@ -5503,19 +5477,12 @@ urix@^0.1.0:
   integrity sha1-2pN/emLiH+wf0Y1Js1wpNQZ6bHI=
 
 url-parse@^1.4.4:
-  version "1.4.7"
-  resolved "https://registry.yarnpkg.com/url-parse/-/url-parse-1.4.7.tgz#a8a83535e8c00a316e403a5db4ac1b9b853ae278"
-  integrity sha512-d3uaVyzDB9tQoSXFvuSUNFibTd9zxd2bkVrDRvF5TmvWWQwqE4lgYJ5m+x1DbecWkw+LK4RNl2CU1hHuOKPVlg==
+  version "1.5.1"
+  resolved "https://registry.yarnpkg.com/url-parse/-/url-parse-1.5.1.tgz#d5fa9890af8a5e1f274a2c98376510f6425f6e3b"
+  integrity sha512-HOfCOUJt7iSYzEx/UqgtwKRMC6EU91NFhsCHMv9oM03VJcVo2Qrp8T8kI9D7amFf1cu+/3CEhgb3rF9zL7k85Q==
   dependencies:
     querystringify "^2.1.1"
     requires-port "^1.0.0"
-
-use-subscription@^1.0.0:
-  version "1.4.0"
-  resolved "https://registry.yarnpkg.com/use-subscription/-/use-subscription-1.4.0.tgz#c4e808cfed6fe6e1ac875df1369c63f3ddae9522"
-  integrity sha512-R7P7JWpeHp+dtEYsgDzIIgOmVqRfJjRjLOO0YIYk6twctUkUYe6Tz0pcabyTDGcMMRt9uMbFMfwBfxKHg9gCSw==
-  dependencies:
-    object-assign "^4.1.1"
 
 use@^3.1.0:
   version "3.1.1"
